@@ -1,0 +1,11 @@
+## Interface: 90002
+
+## Title: AutomaticRoleCheck
+## Notes: Lightweight approach for automatically accepting role check pop-ups.
+## Version: 1.0.0
+## Author: Eclypsa
+
+## DefaultState: enabled
+## LoadOnDemand: 0
+
+AutomaticRoleCheck.lua
