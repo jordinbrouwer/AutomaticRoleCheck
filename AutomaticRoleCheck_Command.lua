@@ -8,6 +8,6 @@ function SlashCmdList.AUTOMATICROLECHECK(cmd)
         AutomaticRoleCheck.Options.Enabled = false
         print("|CFF959697AutomaticRoleCheck|r: Disabled AutomaticRoleCheck")
     else
-        print("|CFF959697AutomaticRoleCheck|r: 1.0.0")
+        print("|CFF959697AutomaticRoleCheck|r: 1.1.0")
     end
 end
