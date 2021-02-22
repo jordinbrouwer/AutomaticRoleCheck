@@ -7,5 +7,7 @@
 
 ## DefaultState: enabled
 ## LoadOnDemand: 0
+## SavedVariablesPerCharacter: AutomaticRoleCheck_Options
 
 AutomaticRoleCheck.lua
+AutomaticRoleCheck_Command.lua
