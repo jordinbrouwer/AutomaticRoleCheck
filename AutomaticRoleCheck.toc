@@ -11,3 +11,4 @@
 
 AutomaticRoleCheck.lua
 AutomaticRoleCheck_Command.lua
+AutomaticRoleCheck_Panel.lua
