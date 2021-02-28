@@ -14,7 +14,7 @@ AutomaticRoleCheck.Panel.Inner.EnabledButton:SetPoint("TOPLEFT", 10, -45)
 AutomaticRoleCheck.Panel.Inner.EnabledButton.Text:SetFontObject("GameFontHighlightSmall")
 AutomaticRoleCheck.Panel.Inner.EnabledButton.Text:SetPoint("LEFT", AutomaticRoleCheck.Panel.Inner.EnabledButton, "RIGHT", 0, 1)
 AutomaticRoleCheck.Panel.Inner.EnabledButton.Text:SetText("Enable AutomaticRoleCheck")
-AutomaticRoleCheck.Panel.Inner.EnabledButton.tooltip = AutomaticRoleCheck.Panel.Inner.EnabledButton.Text:GetText()
+AutomaticRoleCheck.Panel.Inner.EnabledButton.tooltip = "If the AutomaticRoleCheck addon is enabled"
 
 AutomaticRoleCheck.Panel.Inner.EnabledButton:HookScript("OnClick", function()
     AutomaticRoleCheck.Options.Enabled = AutomaticRoleCheck.Panel.Inner.EnabledButton:GetChecked()
