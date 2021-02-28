@@ -9,7 +9,7 @@ AutomaticRoleCheck.Panel.Inner:SetJustifyH("LEFT")
 AutomaticRoleCheck.Panel.Inner:SetJustifyV("TOP")
 AutomaticRoleCheck.Panel.Inner:SetText("AutomaticRoleCheck")
 
-AutomaticRoleCheck.Panel.Inner.EnabledButton = CreateFrame("CheckButton", "EnabledButton", AutomaticRoleCheck.Panel, "ChatConfigCheckButtonTemplate")
+AutomaticRoleCheck.Panel.Inner.EnabledButton = CreateFrame("CheckButton", nil, AutomaticRoleCheck.Panel, "ChatConfigCheckButtonTemplate")
 AutomaticRoleCheck.Panel.Inner.EnabledButton:SetPoint("TOPLEFT", 10, -45)
 AutomaticRoleCheck.Panel.Inner.EnabledButton.Text:SetFontObject("GameFontHighlightSmall")
 AutomaticRoleCheck.Panel.Inner.EnabledButton.Text:SetPoint("LEFT", AutomaticRoleCheck.Panel.Inner.EnabledButton, "RIGHT", 0, 1)
