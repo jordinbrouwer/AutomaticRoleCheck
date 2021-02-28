@@ -3,11 +3,15 @@ AutomaticRoleCheck.__index = AutomaticRoleCheck
 
 AutomaticRoleCheck.Defaults = {
     Enabled = true,
+    DisableOnce = false,
 }
 AutomaticRoleCheck.Accept = function(self)
     if AutomaticRoleCheck.Options.Enabled then
-        self:Click()
+        if not AutomaticRoleCheck.Options.DisableOnce then
+            self:Click()
+        end
     end
+    AutomaticRoleCheck.Options.DisableOnce = false
 end
 AutomaticRoleCheck.EventHandler = function(self, event, arg, ...)
     if event == "ADDON_LOADED" and arg == "AutomaticRoleCheck" then
