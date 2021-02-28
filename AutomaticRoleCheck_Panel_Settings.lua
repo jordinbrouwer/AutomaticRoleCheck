@@ -13,7 +13,7 @@ AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton:SetPoint("TOPLEFT", 15
 AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton.Text:SetFontObject("GameFontHighlightSmall")
 AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton.Text:SetPoint("LEFT", AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton, "RIGHT", 0, 1)
 AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton.Text:SetText("Disable Once")
-AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton.tooltip = AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton.Text:GetText()
+AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton.tooltip = "If the addon is disabled once for the upcoming role check"
 
 AutomaticRoleCheck.Panel.Inner.EnabledButton:HookScript("OnClick", function()
     if AutomaticRoleCheck.Panel.Inner.EnabledButton:GetChecked() then
