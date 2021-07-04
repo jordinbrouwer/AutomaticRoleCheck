@@ -1,8 +1,8 @@
-## Interface: 90002
+## Interface: 90100
 
 ## Title: AutomaticRoleCheck
 ## Notes: Lightweight approach for automatically accepting role check pop-ups.
-## Version: 1.2.0
+## Version: 1.2.1
 ## Author: Eclypsa
 
 ## DefaultState: enabled
