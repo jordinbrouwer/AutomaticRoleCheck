@@ -17,10 +17,10 @@ AutomaticRoleCheck.Panel.Inner.EnabledButton.Text:SetText("Enable AutomaticRoleC
 AutomaticRoleCheck.Panel.Inner.EnabledButton.tooltip = "If the AutomaticRoleCheck addon is enabled"
 
 AutomaticRoleCheck.Panel.Inner.EnabledButton:HookScript("OnClick", function()
-    AutomaticRoleCheck.Options.Enabled = AutomaticRoleCheck.Panel.Inner.EnabledButton:GetChecked()
+  AutomaticRoleCheck.Options.Enabled = AutomaticRoleCheck.Panel.Inner.EnabledButton:GetChecked()
 end)
 AutomaticRoleCheck.Panel:HookScript("OnShow", function()
-    AutomaticRoleCheck.Panel.Inner.EnabledButton:SetChecked(AutomaticRoleCheck.Options.Enabled)
+  AutomaticRoleCheck.Panel.Inner.EnabledButton:SetChecked(AutomaticRoleCheck.Options.Enabled)
 end)
 AutomaticRoleCheck.Panel:HookScript("OnEvent", AutomaticRoleCheck.EventHandler)
 
