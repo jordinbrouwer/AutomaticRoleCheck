@@ -11,6 +11,6 @@ function SlashCmdList.AUTOMATICROLECHECK(cmd)
     AutomaticRoleCheck.Options.DisableOnce = true
     print("|CFF959697AutomaticRoleCheck|r: Disable Once AutomaticRoleCheck")
   else
-    print("|CFF959697AutomaticRoleCheck|r: " .. (AutomaticRoleCheck.Options.Enabled and "Enabled" or "Disabled") .. " (|CFF9596971.2.2|r)")
+    print("|CFF959697AutomaticRoleCheck|r: " .. (AutomaticRoleCheck.Options.Enabled and "Enabled" or "Disabled") .. " (|CFF9596971.2.3|r)")
   end
 end
