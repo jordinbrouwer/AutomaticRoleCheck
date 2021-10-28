@@ -1,6 +1,5 @@
 # Automatic Role Check
 
-## Introduction
 Lightweight approach for automatically accepting role check pop-ups.
 
 ## Usage
