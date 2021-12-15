@@ -1,7 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.2.3...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.2.4...master)
+
+## [1.2.4 (2021-12-15)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.2.3...1.2.4)
+
+### Added
+- Added LICENSE for the project.
+
+### Changed
+- Updated `.editorconfig`, `.gitattributes` and `.gitignore`.
 
 ## [1.2.3 (2021-10-28)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.2.2...1.2.3)
 
