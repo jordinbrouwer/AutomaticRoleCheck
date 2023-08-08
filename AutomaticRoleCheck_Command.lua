@@ -1,7 +1,12 @@
 SLASH_AUTOMATICROLECHECK1 = "/arc"
 
 function SlashCmdList.AUTOMATICROLECHECK(cmd)
-  if cmd == "enable" then
+  if cmd == "" then
+    print("|CFF959697AutomaticRoleCheck|r: Currently " .. (AutomaticRoleCheck.Options.Enabled and "enabled" or "disabled"))
+    print("  |CFF959697/arc enable|r: To enable the addon")
+    print("  |CFF959697/arc disable|r: To disable the addon")
+    print("  |CFF959697/arc disableonce|r: To disable the addon once")
+  elseif cmd == "enable" then
     AutomaticRoleCheck.Options.Enabled = true
     print("|CFF959697AutomaticRoleCheck|r: Enabled AutomaticRoleCheck")
   elseif cmd == "disable" then
@@ -9,8 +14,8 @@ function SlashCmdList.AUTOMATICROLECHECK(cmd)
     print("|CFF959697AutomaticRoleCheck|r: Disabled AutomaticRoleCheck")
   elseif cmd == "disableonce" then
     AutomaticRoleCheck.Options.DisableOnce = true
-    print("|CFF959697AutomaticRoleCheck|r: Disable Once AutomaticRoleCheck")
+    print("|CFF959697AutomaticRoleCheck|r: Disabled AutomaticRoleCheck once")
   else
-    print("|CFF959697AutomaticRoleCheck|r: " .. (AutomaticRoleCheck.Options.Enabled and "Enabled" or "Disabled") .. " (|CFF9596971.6.0|r)")
+    print("|CFF959697AutomaticRoleCheck|r: Invalid command")
   end
 end
