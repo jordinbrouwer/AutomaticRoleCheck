@@ -1,8 +1,8 @@
-## Interface: 100100
+## Interface: 100105
 
 ## Title: AutomaticRoleCheck
 ## Notes: Lightweight approach for automatically accepting role check pop-ups.
-## Version: 1.5.0
+## Version: @project-version@
 ## Author: Jordin
 
 ## DefaultState: enabled

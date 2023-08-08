@@ -1,7 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.6.0...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.7.0...master)
+
+## [1.7.0 (2023-08-08)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.6.0...1.7.0)
+
+### Added
+- Added fallback for invalid commands.
+- Added in-game docs for the addon.
+
+### Changed
+- Bumped version due to new patch.
+- Fixed position of settings panel checkbox.
+- Simplified code execution for the hook events on the buttons by removing unnecessary code.
+- Changed the final newline rule to be false.
+- Fixed uppercase mismatch on words of the docs and panels.
+
+### Removed
+- The option for automatic acceptance of dungeon queues upon receiving an invite has been disabled due to hardware protection since patch `10.1.5`.
 
 ## [1.6.0 (2023-05-22)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.5.0...1.6.0)
 
