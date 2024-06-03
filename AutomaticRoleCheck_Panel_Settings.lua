@@ -15,8 +15,8 @@ AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton.Text:SetPoint("LEFT", 
 AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton.Text:SetText("Disable once")
 AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton.tooltip = "If the addon is disabled once for the upcoming role check."
 
-AutomaticRoleCheck.Panel.Inner.EnabledButton:HookScript("OnClick", function()
-  if AutomaticRoleCheck.Panel.Inner.EnabledButton:GetChecked() then
+AutomaticRoleCheck.Panel.General.Inner.EnabledButton:HookScript("OnClick", function()
+  if AutomaticRoleCheck.Panel.General.Inner.EnabledButton:GetChecked() then
     AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton:Enable()
   else
     AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton:Disable()
@@ -25,9 +25,12 @@ end)
 AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton:HookScript("OnClick", function()
   AutomaticRoleCheck.Options.DisableOnce = AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton:GetChecked()
 end)
-AutomaticRoleCheck.Panel.Settings:HookScript("OnShow", function()
+
+function AutomaticRoleCheck.Panel.Settings.PopulatePanel()
   AutomaticRoleCheck.Panel.Settings.Inner.DisableOnceButton:SetChecked(AutomaticRoleCheck.Options.DisableOnce)
-end)
+end
+
+AutomaticRoleCheck.Panel.Settings:HookScript("OnShow", AutomaticRoleCheck.Panel.Settings.PopulatePanel)
 AutomaticRoleCheck.Panel.Settings:HookScript("OnEvent", AutomaticRoleCheck.EventHandler)
 
 InterfaceOptions_AddCategory(AutomaticRoleCheck.Panel.Settings);
