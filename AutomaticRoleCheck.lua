@@ -4,6 +4,7 @@ AutomaticRoleCheck.__index = AutomaticRoleCheck
 AutomaticRoleCheck.Defaults = {
   Enabled = true,
   DisableOnce = false,
+  DisableOnceOnLogin = false,
 }
 AutomaticRoleCheck.Accept = function(self)
   if AutomaticRoleCheck.Options.Enabled then
@@ -20,6 +21,9 @@ AutomaticRoleCheck.EventHandler = function(self, event, arg, ...)
       for k, v in pairs(AutomaticRoleCheck_Options) do
         AutomaticRoleCheck.Options[k] = v
       end
+      AutomaticRoleCheck.Options.DisableOnce = AutomaticRoleCheck.Options.DisableOnce and -- ?
+                                              AutomaticRoleCheck.Options.DisableOnce or -- then
+                                              AutomaticRoleCheck.Options.DisableOnceOnLogin -- else
     end
   elseif event == "PLAYER_LOGOUT" then
     AutomaticRoleCheck_Options = AutomaticRoleCheck.Options

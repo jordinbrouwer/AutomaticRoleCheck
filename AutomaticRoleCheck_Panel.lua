@@ -19,9 +19,12 @@ AutomaticRoleCheck.Panel.Inner.EnabledButton.tooltip = "If the AutomaticRoleChec
 AutomaticRoleCheck.Panel.Inner.EnabledButton:HookScript("OnClick", function()
   AutomaticRoleCheck.Options.Enabled = AutomaticRoleCheck.Panel.Inner.EnabledButton:GetChecked()
 end)
-AutomaticRoleCheck.Panel:HookScript("OnShow", function()
+
+function AutomaticRoleCheck.Panel.PopulatePanel()
   AutomaticRoleCheck.Panel.Inner.EnabledButton:SetChecked(AutomaticRoleCheck.Options.Enabled)
-end)
+end
+
+AutomaticRoleCheck.Panel:HookScript("OnShow", AutomaticRoleCheck.Panel.PopulatePanel)
 AutomaticRoleCheck.Panel:HookScript("OnEvent", AutomaticRoleCheck.EventHandler)
 
 InterfaceOptions_AddCategory(AutomaticRoleCheck.Panel)
