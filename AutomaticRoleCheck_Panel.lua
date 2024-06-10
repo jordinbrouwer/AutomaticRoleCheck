@@ -22,12 +22,11 @@ AutomaticRoleCheck.Panel.General.Inner.EnabledButton:HookScript("OnClick", funct
   AutomaticRoleCheck.Options.Enabled = AutomaticRoleCheck.Panel.General.Inner.EnabledButton:GetChecked()
 end)
 
-
 function AutomaticRoleCheck.Panel.PopulatePanel()
   AutomaticRoleCheck.Panel.General.Inner.EnabledButton:SetChecked(AutomaticRoleCheck.Options.Enabled)
 end
 
-AutomaticRoleCheck.Panel.General:HookScript("OnShow", AutomaticRoleCheck.Panel.PopulatePanel)
+AutomaticRoleCheck.Panel:HookScript("OnShow", AutomaticRoleCheck.Panel.PopulatePanel)
 AutomaticRoleCheck.Panel:HookScript("OnEvent", AutomaticRoleCheck.EventHandler)
 
 InterfaceOptions_AddCategory(AutomaticRoleCheck.Panel)
