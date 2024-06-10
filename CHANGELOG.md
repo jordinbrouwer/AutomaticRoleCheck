@@ -1,7 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.9.0...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.10.0...master)
+
+## [1.10.0 (2024-06-10)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.9.0...1.10.0)
+
+### Fixed
+- Issue with populating the options panel (@rodrigodias4).
+
+### Changed
+- Bumped version due to new patch.
 
 ## [1.9.0 (2024-02-13)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.8.0...1.9.0)
 
