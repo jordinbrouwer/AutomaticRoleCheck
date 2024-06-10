@@ -21,6 +21,8 @@ AutomaticRoleCheck.EventHandler = function(self, event, arg, ...)
         AutomaticRoleCheck.Options[k] = v
       end
     end
+    AutomaticRoleCheck.Panel.PopulatePanel()
+    AutomaticRoleCheck.Panel.Settings.PopulatePanel()
   elseif event == "PLAYER_LOGOUT" then
     AutomaticRoleCheck_Options = AutomaticRoleCheck.Options
   end
