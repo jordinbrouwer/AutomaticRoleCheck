@@ -21,10 +21,10 @@ AutomaticRoleCheck.EventHandler = function(self, event, arg, ...)
       for k, v in pairs(AutomaticRoleCheck_Options) do
         AutomaticRoleCheck.Options[k] = v
       end
-      AutomaticRoleCheck.Options.DisableOnce = AutomaticRoleCheck.Options.DisableOnce and -- ?
-                                              AutomaticRoleCheck.Options.DisableOnce or -- then
-                                              AutomaticRoleCheck.Options.DisableOnceOnLogin -- else
+      AutomaticRoleCheck.Options.DisableOnce = AutomaticRoleCheck.Options.DisableOnce and AutomaticRoleCheck.Options.DisableOnce or AutomaticRoleCheck.Options.DisableOnceOnLogin
     end
+    AutomaticRoleCheck.Panel.PopulatePanel()
+    AutomaticRoleCheck.Panel.Settings.PopulatePanel()
   elseif event == "PLAYER_LOGOUT" then
     AutomaticRoleCheck_Options = AutomaticRoleCheck.Options
   end
