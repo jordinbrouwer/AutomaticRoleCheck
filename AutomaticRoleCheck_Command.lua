@@ -1,21 +1,25 @@
 SLASH_AUTOMATICROLECHECK1 = "/arc"
 
-function SlashCmdList.AUTOMATICROLECHECK(cmd)
-  if cmd == "" then
-    print("|CFF959697AutomaticRoleCheck|r: Currently " .. (AutomaticRoleCheck.Options.Enabled and "enabled" or "disabled"))
-    print("  |CFF959697/arc enable|r: To enable the addon")
-    print("  |CFF959697/arc disable|r: To disable the addon")
-    print("  |CFF959697/arc disableonce|r: To disable the addon once")
+SlashCmdList.AUTOMATICROLECHECK = function (cmd)
+  if cmd == "help" then
+    print("|CFFFF0000AutomaticRoleCheck|r: List of available commands:")
+    print("  |CFFFF0000/arc options|r: To open the addon options.")
+    print("  |CFFFF0000/arc enable|r: To enable the addon.")
+    print("  |CFFFF0000/arc disable|r: To disable the addon.")
+    print("  |CFFFF0000/arc disableonce|r: To disable the addon once the next role check.")
+  elseif cmd == "options" then
+    Settings.OpenToCategory(AutomaticRoleCheck.Panel:GetID())
   elseif cmd == "enable" then
-    AutomaticRoleCheck.Options.Enabled = true
-    print("|CFF959697AutomaticRoleCheck|r: Enabled AutomaticRoleCheck")
+    AutomaticRoleCheck_Options.Enabled = true
+    print("|CFFFF0000AutomaticRoleCheck|r: Enabled the addon.")
   elseif cmd == "disable" then
-    AutomaticRoleCheck.Options.Enabled = false
-    print("|CFF959697AutomaticRoleCheck|r: Disabled AutomaticRoleCheck")
+    AutomaticRoleCheck_Options.Enabled = false
+    print("|CFFFF0000AutomaticRoleCheck|r: Disabled the addon.")
   elseif cmd == "disableonce" then
-    AutomaticRoleCheck.Options.DisableOnce = true
-    print("|CFF959697AutomaticRoleCheck|r: Disabled AutomaticRoleCheck once")
+    AutomaticRoleCheck_Options.DisableOnce = true
+    print("|CFFFF0000AutomaticRoleCheck|r: Disabled once for the next role check.")
   else
-    print("|CFF959697AutomaticRoleCheck|r: Invalid command")
+    print("|CFFFF0000AutomaticRoleCheck|r: " .. (cmd == "" and (AutomaticRoleCheck_Options.Enabled and "Enabled: " .. ((AutomaticRoleCheck_Options.DisableOnce or (AutomaticRoleCheck.FirstCheck and AutomaticRoleCheck_Options.DisableOnceOnLogin)) and "Will disable for the next role check." or "Will remain active for the next role check.") or "Disabled") or "Invalid command."))
+    print("  Type |CFFFF0000/arc help|r for a listing of the addon commands.")
   end
 end

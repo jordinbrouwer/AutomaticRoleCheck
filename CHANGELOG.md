@@ -3,8 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.10.0...master)
 
+### Fixed
+- Capability with new changes to the WoW Settings API.
+
 ### Added
 - Added a feature to disable first role check upon each login.
+
+### Changed
+- Bumped version due to new patch.
 
 ## [1.10.0 (2024-06-10)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.9.0...1.10.0)
 
