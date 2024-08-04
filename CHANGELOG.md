@@ -1,7 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.10.0...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.11.0...master)
+
+## [1.11.0 (2024-08-04)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.10.0...1.11.0)
 
 ### Fixed
 - Capability with new changes to the WoW Settings API.
