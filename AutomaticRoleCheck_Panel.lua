@@ -1,25 +1,19 @@
-AutomaticRoleCheck.Panel = CreateFrame("Frame", nil, UIParent)
-AutomaticRoleCheck.Panel:RegisterEvent("ADDON_LOADED")
-AutomaticRoleCheck.Panel:RegisterEvent("PLAYER_LOGOUT")
-AutomaticRoleCheck.Panel.name = "AutomaticRoleCheck"
+AutomaticRoleCheck.Panel = Settings.RegisterVerticalLayoutCategory("AutomaticRoleCheck")
 
-AutomaticRoleCheck.Panel.General = CreateFrame("Frame", nil, AutomaticRoleCheck.Panel)
-
-AutomaticRoleCheck.Panel.General.Inner = AutomaticRoleCheck.Panel:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-AutomaticRoleCheck.Panel.General.Inner:SetPoint("TOPLEFT", 10, -15)
-AutomaticRoleCheck.Panel.General.Inner:SetJustifyH("LEFT")
-AutomaticRoleCheck.Panel.General.Inner:SetJustifyV("TOP")
-AutomaticRoleCheck.Panel.General.Inner:SetText("AutomaticRoleCheck")
-
-AutomaticRoleCheck.Panel.Inner.EnabledButton:HookScript("OnClick", function()
-  AutomaticRoleCheck.Options.Enabled = AutomaticRoleCheck.Panel.Inner.EnabledButton:GetChecked()
-end)
-
-function AutomaticRoleCheck.Panel.PopulatePanel()
-  AutomaticRoleCheck.Panel.Inner.EnabledButton:SetChecked(AutomaticRoleCheck.Options.Enabled)
+local function RegisterCheckbox(configKey, name, tooltip)
+  local defaultValue = AutomaticRoleCheck.Defaults[configKey]
+  local function GetValue()
+    return AutomaticRoleCheck_Options[configKey]
+  end
+  local function SetValue(value)
+    AutomaticRoleCheck_Options[configKey] = value
+  end
+  local setting = Settings.RegisterProxySetting(AutomaticRoleCheck.Panel, "AutomaticRoleCheck_Options." .. configKey, type(defaultValue), name, defaultValue, GetValue, SetValue)
+  Settings.CreateCheckbox(AutomaticRoleCheck.Panel, setting, tooltip)
 end
 
-AutomaticRoleCheck.Panel:HookScript("OnShow", AutomaticRoleCheck.Panel.PopulatePanel)
-AutomaticRoleCheck.Panel:HookScript("OnEvent", AutomaticRoleCheck.EventHandler)
+RegisterCheckbox("Enabled", "Enabled", "Reflects if the addon is enabled. Can also be modified with a command.")
+RegisterCheckbox("DisableOnce", "Disable once", "Indicates if the addon is disabled for the upcoming role check. Can also be modified with a command.")
+RegisterCheckbox("DisableOnceOnLogin", "Disable once on each login", "Indicates if the addon is disabled for the first role check upon each login.")
 
-InterfaceOptions_AddCategory(AutomaticRoleCheck.Panel)
+Settings.RegisterAddOnCategory(AutomaticRoleCheck.Panel)

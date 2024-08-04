@@ -1,4 +1,4 @@
-## Interface: 110000
+## Interface: 110002
 
 ## Title: AutomaticRoleCheck
 ## Notes: Lightweight approach for automatically accepting role check pop-ups.
@@ -10,6 +10,5 @@
 ## SavedVariablesPerCharacter: AutomaticRoleCheck_Options
 
 AutomaticRoleCheck.lua
-AutomaticRoleCheck_Command.lua
 AutomaticRoleCheck_Panel.lua
-AutomaticRoleCheck_Panel_Settings.lua
+AutomaticRoleCheck_Command.lua
