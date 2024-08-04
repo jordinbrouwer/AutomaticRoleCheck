@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.10.0...master)
 
+### Added
+- Added a feature to disable first role check upon each login.
+
 ## [1.10.0 (2024-06-10)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.9.0...1.10.0)
 
 ### Fixed
@@ -10,9 +13,6 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Bumped version due to new patch.
-
-### Added
-- Added a feature to disable first role check upon each login.
 
 ## [1.9.0 (2024-02-13)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.8.0...1.9.0)
 
