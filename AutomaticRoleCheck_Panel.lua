@@ -11,19 +11,12 @@ AutomaticRoleCheck.Panel.General.Inner:SetJustifyH("LEFT")
 AutomaticRoleCheck.Panel.General.Inner:SetJustifyV("TOP")
 AutomaticRoleCheck.Panel.General.Inner:SetText("AutomaticRoleCheck")
 
-AutomaticRoleCheck.Panel.General.Inner.EnabledButton = CreateFrame("CheckButton", nil, AutomaticRoleCheck.Panel, "ChatConfigCheckButtonTemplate")
-AutomaticRoleCheck.Panel.General.Inner.EnabledButton:SetPoint("TOPLEFT", 10, -45)
-AutomaticRoleCheck.Panel.General.Inner.EnabledButton.Text:SetFontObject("GameFontHighlightSmall")
-AutomaticRoleCheck.Panel.General.Inner.EnabledButton.Text:SetPoint("LEFT", AutomaticRoleCheck.Panel.General.Inner.EnabledButton, "RIGHT", 0, 1)
-AutomaticRoleCheck.Panel.General.Inner.EnabledButton.Text:SetText("Enable AutomaticRoleCheck")
-AutomaticRoleCheck.Panel.General.Inner.EnabledButton.tooltip = "If the AutomaticRoleCheck addon is enabled."
-
-AutomaticRoleCheck.Panel.General.Inner.EnabledButton:HookScript("OnClick", function()
-  AutomaticRoleCheck.Options.Enabled = AutomaticRoleCheck.Panel.General.Inner.EnabledButton:GetChecked()
+AutomaticRoleCheck.Panel.Inner.EnabledButton:HookScript("OnClick", function()
+  AutomaticRoleCheck.Options.Enabled = AutomaticRoleCheck.Panel.Inner.EnabledButton:GetChecked()
 end)
 
 function AutomaticRoleCheck.Panel.PopulatePanel()
-  AutomaticRoleCheck.Panel.General.Inner.EnabledButton:SetChecked(AutomaticRoleCheck.Options.Enabled)
+  AutomaticRoleCheck.Panel.Inner.EnabledButton:SetChecked(AutomaticRoleCheck.Options.Enabled)
 end
 
 AutomaticRoleCheck.Panel:HookScript("OnShow", AutomaticRoleCheck.Panel.PopulatePanel)
