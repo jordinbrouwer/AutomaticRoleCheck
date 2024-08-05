@@ -1,7 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.11.0...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.0.0...master)
+
+## [2.0.0 (2024-08-05)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.11.0...2.0.0)
+
+### Fixed
+- Check for the enabled state of the addon on acceptance of the role check.
+
+### Added
+- Added an option to disable the addon whilst being AFK.
+- Added an icon to identify the addon in the Addons option screen.
+
+### Changed
+- Adapted the color of the commands to be corresponding with the logo color.
 
 ## [1.11.0 (2024-08-04)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.10.0...1.11.0)
 
@@ -10,8 +22,10 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Added a feature to disable first role check upon each login.
+- Added a command to open the options for the addon.
 
 ### Changed
+- Restructured the command list with more fitting naming.
 - Bumped version due to new patch.
 
 ## [1.10.0 (2024-06-10)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.9.0...1.10.0)
