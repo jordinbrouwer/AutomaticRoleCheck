@@ -13,6 +13,7 @@ local function RegisterCheckbox(configKey, name, tooltip)
 end
 
 RegisterCheckbox("Enabled", "Enabled", "Reflects if the addon is enabled. Can also be modified with a command.")
+RegisterCheckbox("DisableWhilstAFK", "Disable whilst AFK", "Indicates whether the addon should be disabled while you are AFK.")
 RegisterCheckbox("DisableOnce", "Disable once", "Indicates if the addon is disabled for the upcoming role check. Can also be modified with a command.")
 RegisterCheckbox("DisableOnceOnLogin", "Disable once on each login", "Indicates if the addon is disabled for the first role check upon each login.")
 

@@ -2,6 +2,7 @@
 
 ## Title: AutomaticRoleCheck
 ## Notes: Lightweight approach for automatically accepting role check pop-ups.
+## IconTexture: Interface\AddOns\AutomaticRoleCheck\AutomaticRoleCheck
 ## Version: @project-version@
 ## Author: Jordin
 
