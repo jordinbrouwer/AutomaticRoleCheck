@@ -12,7 +12,6 @@ AutomaticRoleCheck = {
 AutomaticRoleCheck.GetRoleName = function()
   local spec = GetSpecialization()
   if spec == nil then return end
-
   return (select(5, GetSpecializationInfo(spec)))
 end
 
@@ -27,9 +26,10 @@ AutomaticRoleCheck.Accept = function(self)
 end
 
 local f = CreateFrame("frame")
-f:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 f:RegisterEvent("ADDON_LOADED")
-f:SetScript("OnEvent", function(_, event, arg1)
+f:RegisterEvent("PLAYER_ENTERING_WORLD")
+f:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+f:SetScript("OnEvent", function(_, event, arg1, arg2)
   if event == "ADDON_LOADED" then
     -- Check if our addon is the one that was loaded
     if arg1 ~= AutomaticRoleCheck.AddonName then return end
@@ -47,6 +47,11 @@ f:SetScript("OnEvent", function(_, event, arg1)
     -- Disable the addon once if first login and option is enabled
     if AutomaticRoleCheck_Options.DisableOnceOnLogin then
       AutomaticRoleCheck_Options.DisableOnce = true
+    end
+  elseif event == "PLAYER_ENTERING_WORLD" and (arg1 or arg2) then
+    -- Check if the last role is set, if not set it to the current role
+    if not AutomaticRoleCheck_Options.LastRole then
+      AutomaticRoleCheck_Options.LastRole = AutomaticRoleCheck.GetRoleName()
     end
 
     -- Setup hooks
