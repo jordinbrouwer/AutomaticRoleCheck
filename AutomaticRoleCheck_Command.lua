@@ -19,7 +19,7 @@ SlashCmdList.AUTOMATICROLECHECK = function (cmd)
     AutomaticRoleCheck_Options.DisableOnce = true
     print("|CFF0077FFAutomaticRoleCheck|r: Disabled once for the next role check.")
   else
-    print("|CFF0077FFAutomaticRoleCheck|r: " .. (cmd == "" and (AutomaticRoleCheck_Options.Enabled and "Enabled: " .. ((AutomaticRoleCheck_Options.DisableOnce or (AutomaticRoleCheck.FirstCheck and AutomaticRoleCheck_Options.DisableOnceOnLogin)) and "Will disable for the next role check." or "Will remain active for the next role check.") or "Disabled.") or "Invalid command."))
+    print("|CFF0077FFAutomaticRoleCheck|r: " .. (cmd == "" and (AutomaticRoleCheck_Options.Enabled and "Enabled: " .. (AutomaticRoleCheck_Options.DisableOnce and "Will disable for the next role check." or "Will remain active for the next role check.") or "Disabled.") or "Invalid command."))
     print("  Type |CFF0077FF/arc help|r for a listing of the addon commands.")
   end
 end
