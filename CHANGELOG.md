@@ -1,7 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.0.0...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.1.0...master)
+
+## [2.1.0 (2024-12-02)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.0.0...2.1.0)
+
+### Added
+- Added an option to disable the addon for the first role check upon changing role (@Pegoth).
+
+### Changed
+- Bumped version due to new patch.
 
 ## [2.0.0 (2024-08-05)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.11.0...2.0.0)
 
