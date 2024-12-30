@@ -1,7 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.1.0...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.1.1...master)
+
+## [2.1.1 (2024-12-30)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.1.0...2.1.1)
+
+### Changed
+- Bumped version due to new patch.
 
 ## [2.1.0 (2024-12-02)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.0.0...2.1.0)
 
