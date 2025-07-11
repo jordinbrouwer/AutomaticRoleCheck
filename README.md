@@ -10,6 +10,7 @@ Lightweight approach for automatically accepting role check pop-ups.
 - To enable the addon, use `/arc enable`.
 - To disable the addon, use `/arc disable`.
 - To disable the addon once for the next role check, use `/arc disableonce`.
+- To enable the addon once for the next role check, use `/arc enableonce`.
 
 ## Feedback
 
