@@ -7,6 +7,7 @@ SlashCmdList.AUTOMATICROLECHECK = function (cmd)
     print("  |CFF0077FF/arc enable|r: To enable the addon.")
     print("  |CFF0077FF/arc disable|r: To disable the addon.")
     print("  |CFF0077FF/arc disableonce|r: To disable the addon once the next role check.")
+    print("  |CFF0077FF/arc enableonce|r: To enable the addon once for the next role check.")
   elseif cmd == "options" then
     Settings.OpenToCategory(AutomaticRoleCheck.Panel:GetID())
   elseif cmd == "enable" then
@@ -18,8 +19,11 @@ SlashCmdList.AUTOMATICROLECHECK = function (cmd)
   elseif cmd == "disableonce" then
     AutomaticRoleCheck_Options.DisableOnce = true
     print("|CFF0077FFAutomaticRoleCheck|r: Disabled once for the next role check.")
+  elseif cmd == "enableonce" then
+    AutomaticRoleCheck_Options.EnableOnce = true
+    print("|CFF0077FFAutomaticRoleCheck|r: Enabled once for the next role check.")
   else
-    print("|CFF0077FFAutomaticRoleCheck|r: " .. (cmd == "" and (AutomaticRoleCheck_Options.Enabled and "Enabled: " .. (AutomaticRoleCheck_Options.DisableOnce and "Will disable for the next role check." or "Will remain active for the next role check.") or "Disabled.") or "Invalid command."))
+    print("|CFF0077FFAutomaticRoleCheck|r: " .. (cmd == "" and (AutomaticRoleCheck_Options.Enabled and "Enabled: " .. (AutomaticRoleCheck_Options.DisableOnce and "Will disable for the next role check." or "Will remain active for the next role check.") or "Disabled: " .. (AutomaticRoleCheck_Options.EnableOnce and "Will enable for the next role check." or "Will remain disabled for the next role check.")) or "Invalid command."))
     print("  Type |CFF0077FF/arc help|r for a listing of the addon commands.")
   end
 end

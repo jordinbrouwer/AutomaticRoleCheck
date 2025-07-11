@@ -4,6 +4,7 @@ AutomaticRoleCheck = {
     Enabled = true,
     DisableWhilstAFK = false,
     DisableOnce = false,
+    EnableOnce = false,
     DisableOnceOnLogin = false,
     DisableOnceOnRoleChange = false,
   }
@@ -16,11 +17,15 @@ AutomaticRoleCheck.GetRoleName = function()
 end
 
 AutomaticRoleCheck.Accept = function(self)
-  if not AutomaticRoleCheck_Options.Enabled then return end
+  if not AutomaticRoleCheck_Options.Enabled and not AutomaticRoleCheck_Options.EnableOnce then return end
   if AutomaticRoleCheck_Options.DisableWhilstAFK and UnitIsAFK("player") then return end
   if AutomaticRoleCheck_Options.DisableOnce then
     AutomaticRoleCheck_Options.DisableOnce = false
     return
+  end
+  if AutomaticRoleCheck_Options.EnableOnce then
+    AutomaticRoleCheck_Options.EnableOnce = false
+    AutomaticRoleCheck_Options.Enabled = true
   end
   self:Click()
 end

@@ -1,7 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.1.2...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.0...master)
+
+## [2.2.0 (2025-07-11)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.1.2...2.2.0)
+
+### Added
+- Added an option to enable the addon once for the next upcoming role check.
+
+### Changed
+- Bumped version due to new patch.
 
 ## [2.1.2 (2025-02-19)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.1.1...2.1.2)
 
