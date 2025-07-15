@@ -25,7 +25,6 @@ AutomaticRoleCheck.Accept = function(self)
   end
   if AutomaticRoleCheck_Options.EnableOnce then
     AutomaticRoleCheck_Options.EnableOnce = false
-    AutomaticRoleCheck_Options.Enabled = true
   end
   self:Click()
 end

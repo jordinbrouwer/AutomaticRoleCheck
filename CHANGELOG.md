@@ -1,7 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.1...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.2...master)
+
+## [2.2.2 (2025-07-15)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.1...2.2.2)
+
+### Fixed
+- Issue where enabling the addon once would cause it to remain permanently active.
 
 ## [2.2.1 (2025-07-14)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.0...2.2.1)
 
