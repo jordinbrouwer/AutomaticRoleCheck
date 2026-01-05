@@ -1,7 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.3...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.3.0...master)
+
+## [2.3.0 (2026-01-05)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.3...2.3.0)
+
+### Added
+- Added feature to skip once by holding shift during a role check.
 
 ## [2.2.3 (2025-10-09)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.2...2.2.3)
 

@@ -12,6 +12,8 @@ Lightweight approach for automatically accepting role check pop-ups.
 - To disable the addon once for the next role check, use `/arc disableonce`.
 - To enable the addon once for the next role check, use `/arc enableonce`.
 
+Additionally, you can skip once by holding shift during a role check.
+
 ## Feedback
 
 Please remember that I'm always working to improve the addon, so I'm interested in hearing directly from you about anything you want to share or ask. You can report this using the issues on GitHub.

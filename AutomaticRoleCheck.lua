@@ -17,6 +17,9 @@ AutomaticRoleCheck.GetRoleName = function()
 end
 
 AutomaticRoleCheck.Accept = function(self)
+  if AutomaticRoleCheck_Options.Enabled and IsShiftKeyDown() then
+      AutomaticRoleCheck_Options.DisableOnce = true
+  end
   if not AutomaticRoleCheck_Options.Enabled and not AutomaticRoleCheck_Options.EnableOnce then return end
   if AutomaticRoleCheck_Options.DisableWhilstAFK and UnitIsAFK("player") then return end
   if AutomaticRoleCheck_Options.DisableOnce then
