@@ -1,4 +1,4 @@
-## Interface: 110205, 110107, 120000
+## Interface: 120000, 120001, 120005
 
 ## Title: AutomaticRoleCheck
 ## Notes: Lightweight approach for automatically accepting role check pop-ups.
