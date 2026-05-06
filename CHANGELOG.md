@@ -1,7 +1,28 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.3.1...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.4.0...master)
+
+## [2.4.0 (2026-05-06)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.3.1...2.4.0)
+
+### Added
+- Added minimap button support to enable/disable the addon quickly.
+- Added `/arc status` command to show current addon version and status.
+- Added support for `/arc enable once` and `/arc disable once`.
+- Added missing options to the panel and updated visual.
+- Added `CONTRIBUTING.md` with local development and check guidance.
+- Added localization for user-facing strings, with English as the default and optional per-locale overrides.
+
+### Changed
+- Bumped version due to new patch.
+- Changed `/arc` to list available commands.
+- Changed slash command handling to use shared helpers and cleaner option updates.
+- Changed release packaging to use `.tmp` artifacts with stricter output validation.
+- Changed CI check execution to use simpler, script-based single-mode jobs.
+
+### Removed
+- Removed `/arc help` command (help is now shown automatically with `/arc`).
+- Removed legacy `/arc enableonce` and `/arc disableonce` command forms.
 
 ## [2.3.1 (2026-03-16)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.3.0...2.3.1)
 
