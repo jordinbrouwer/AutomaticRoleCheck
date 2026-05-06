@@ -2,6 +2,8 @@ AutomaticRoleCheck = AutomaticRoleCheck or {}
 
 local canvasFrame = CreateFrame("Frame")
 local L = AutomaticRoleCheck.Loc
+local SettingsPanel = _G.SettingsPanel
+local hooksecurefunc = _G.hooksecurefunc
 
 AutomaticRoleCheck.Panel = Settings.RegisterCanvasLayoutCategory(canvasFrame, L("settings_category"))
 
@@ -93,7 +95,7 @@ local function CreateCheckboxRow(parent, configKey, labelText, tooltipText)
   end
 
   row:EnableMouse(true)
-  row:SetScript("OnMouseUp", function(self, button)
+  row:SetScript("OnMouseUp", function(_, button)
     if button == "LeftButton" then
       cb:Click()
     end
@@ -235,7 +237,7 @@ BuildCanvas()
 SyncAllCheckboxes()
 UpdateVisibility()
 
-if SettingsPanel and SettingsPanel.SetCurrentCategory then
+if SettingsPanel and SettingsPanel.SetCurrentCategory and hooksecurefunc then
   hooksecurefunc(SettingsPanel, "SetCurrentCategory", function(_, category)
     if category and category:GetID() == AutomaticRoleCheck.Panel:GetID() then
       SyncAllCheckboxes()

@@ -32,7 +32,9 @@ print_help() {
   discovered="$(printf '%s\n' "${script_modes[@]}" | sort)"
   echo "Usage: bash ./scripts/check.sh [mode]"
   echo "Single-script modes:"
-  printf '  - %s\n' $discovered
+  while IFS= read -r mode_name; do
+    printf '  - %s\n' "$mode_name"
+  done <<< "$discovered"
   echo "Grouped modes:"
   echo "  - quick"
   echo "  - all"

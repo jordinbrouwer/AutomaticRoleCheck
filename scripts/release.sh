@@ -182,9 +182,11 @@ for disallowed in ".github/" "scripts/" ".luacheckrc"; do
   fi
 done
 
-echo "version=$version" >> "$output_file"
-echo "archive_version=$archive_version" >> "$output_file"
-echo "archive_path=$archive_path" >> "$output_file"
-echo "notes_path=$notes_path" >> "$output_file"
+{
+  echo "version=$version"
+  echo "archive_version=$archive_version"
+  echo "archive_path=$archive_path"
+  echo "notes_path=$notes_path"
+} >> "$output_file"
 
 echo "[RELEASE] PASSED: Created '$archive_path' with version '$archive_version'."
