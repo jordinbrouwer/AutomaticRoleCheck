@@ -1,0 +1,71 @@
+name: CI
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+jobs:
+  check-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run changelog check
+        run: bash ./scripts/check.sh changelog
+
+  check-commands:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run commands check
+        run: bash ./scripts/check.sh commands
+
+  check-lua:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Luacheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y luacheck
+      - name: Run Luacheck
+        run: bash ./scripts/check.sh lint
+
+  check-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run readme check
+        run: bash ./scripts/check.sh readme
+
+  check-release-dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate release script in non-tag context
+        run: bash ./scripts/check.sh release-output
+
+  check-shell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+      - name: Lint shell scripts
+        run: shellcheck scripts/*.sh scripts/check/*.sh
+
+  check-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run smoke check
+        run: bash ./scripts/check.sh smoke
+
+  check-toc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run toc check
+        run: bash ./scripts/check.sh toc
