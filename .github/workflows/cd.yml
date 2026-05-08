@@ -42,6 +42,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-          name: AutomaticRoleCheck v${{ steps.release.outputs.version }}
+          name: ${{ steps.release.outputs.version }}
           body_path: ${{ steps.release.outputs.notes_path }}
           files: ${{ steps.release.outputs.archive_path }}
