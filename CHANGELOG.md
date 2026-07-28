@@ -3,8 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.4.0...master)
 
+### Added
+- Added CurseForge publish step to CD so tagged releases upload automatically.
+
 ### Changed
 - Updated the default name of the release.
+- Bumped version due to new patch.
 
 ## [2.4.0 (2026-05-06)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.3.1...2.4.0)
 
