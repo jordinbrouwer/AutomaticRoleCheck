@@ -45,3 +45,14 @@ jobs:
           name: ${{ steps.release.outputs.version }}
           body_path: ${{ steps.release.outputs.notes_path }}
           files: ${{ steps.release.outputs.archive_path }}
+      - name: Publish to CurseForge
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_PROJECT_ID: "448353"
+        run: |
+          bash ./scripts/publish-curseforge.sh \
+            "${{ steps.release.outputs.archive_path }}" \
+            "${{ steps.release.outputs.notes_path }}" \
+            "${{ steps.release.outputs.version }}" \
+            "AutomaticRoleCheck.toc"
