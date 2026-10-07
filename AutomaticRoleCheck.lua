@@ -118,6 +118,7 @@ local eventFrame = CreateFrame("Frame")
 local signUpHooked = false
 local inviteHooked = false
 local roleHooked = false
+local rolePollHooked = false
 
 local function OnAddonLoaded(arg1)
   if arg1 ~= AutomaticRoleCheck.AddonName then return end
@@ -171,6 +172,13 @@ local function OnPlayerEnteringWorld(arg1, arg2)
     if roleAccept and roleAccept.HookScript then
       roleAccept:HookScript("OnShow", AutomaticRoleCheck.Accept)
       roleHooked = true
+    end
+  end
+  if not rolePollHooked then
+    local rolePollAccept = RolePollPopupAcceptButton
+    if rolePollAccept and rolePollAccept.HookScript then
+      rolePollAccept:HookScript("OnShow", AutomaticRoleCheck.Accept)
+      rolePollHooked = true
     end
   end
 end

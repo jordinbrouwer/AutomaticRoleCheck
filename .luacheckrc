@@ -15,6 +15,7 @@ read_globals = {
   "LFGListApplicationDialog",
   "LFGInvitePopupAcceptButton",
   "LFDRoleCheckPopupAcceptButton",
+  "RolePollPopupAcceptButton",
   "Settings",
   "InterfaceOptionsFrame_OpenToCategory",
   "C_AddOns",
