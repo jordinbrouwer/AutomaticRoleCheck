@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.6.0...master)
 
+### Changed
+- Updated GitHub Actions workflows to Node 24 compatible action versions.
+
 ## [2.6.0 (2026-10-07)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.5.0...2.6.0)
 
 ### Added
