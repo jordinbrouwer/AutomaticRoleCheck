@@ -1,7 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.5.0...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.6.0...master)
+
+## [2.6.0 (2026-10-07)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.5.0...2.6.0)
+
+### Added
+- Added auto-accept support for the role poll popup.
+- Added WoW Forever compatibility via interface version `16001`.
+
+### Changed
+- Updated specialization role detection to use `C_SpecializationInfo` on newer clients.
+- Updated release and CurseForge publish scripts to handle multiple TOC files.
 
 ## [2.5.0 (2026-07-28)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.4.0...2.5.0)
 

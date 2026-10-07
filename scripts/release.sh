@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+base_dir="$(dirname "$0")"
+# shellcheck source=scripts/toc-lib.sh
+source "$base_dir/toc-lib.sh"
+
 if [ "${RELEASE_DEBUG:-0}" = "1" ]; then
   set -x
 fi
@@ -133,47 +137,51 @@ mkdir -p "$output_dir"
 trap 'rm -rf "$tmp_dir"' EXIT INT TERM
 git archive --format=tar --prefix="${addon_name}/" HEAD | tar -xf - -C "$tmp_dir"
 
-toc_path="$tmp_dir/$addon_name/AutomaticRoleCheck.toc"
-if [ ! -f "$toc_path" ]; then
-  echo "[RELEASE] FAILED: Missing AutomaticRoleCheck.toc in archive source."
-  exit 1
-fi
+addon_dir="$tmp_dir/$addon_name"
+toc_count=0
+while IFS= read -r toc_file; do
+  [ -n "$toc_file" ] || continue
+  toc_count=$((toc_count + 1))
 
-if ! awk -v v="$version" '
-  BEGIN { updated = 0 }
-  /^## Version: / { print "## Version: " v; updated = 1; next }
-  { print }
-  END { if (updated == 0) exit 2 }
-' "$toc_path" > "$toc_path.tmp"; then
-  echo "[RELEASE] FAILED: Could not update TOC version line."
-  rm -f "$toc_path.tmp"
+  toc_path="$addon_dir/$toc_file"
+  if ! toc_lib_update_version "$toc_path" "$version"; then
+    echo "[RELEASE] FAILED: Could not update TOC version line in $toc_file."
+    exit 1
+  fi
+done < <(toc_lib_discover "$addon_dir")
+
+if [ "$toc_count" -eq 0 ]; then
+  echo "[RELEASE] FAILED: No TOC files found in archive."
   exit 1
 fi
-mv "$toc_path.tmp" "$toc_path"
 
 rm -f "$archive_path"
 (cd "$tmp_dir" && zip -qr "$OLDPWD/$archive_path" "$addon_name")
 
 archive_files="$(unzip -Z1 "$archive_path")"
-required_archive_files="
-$addon_name/AutomaticRoleCheck.toc
-$addon_name/AutomaticRoleCheck.tga
-"
-for file in $required_archive_files; do
-  if ! printf '%s\n' "$archive_files" | grep -Fxq "$file"; then
-    echo "[RELEASE] FAILED: Archive missing required file '$file'."
-    exit 1
-  fi
-done
+if ! printf '%s\n' "$archive_files" | grep -Fxq "$addon_name/AutomaticRoleCheck.tga"; then
+  echo "[RELEASE] FAILED: Archive missing required file '$addon_name/AutomaticRoleCheck.tga'."
+  exit 1
+fi
 
-toc_lua_files="$(awk '/^[A-Za-z0-9_].*\.lua$/{print $0}' "$toc_path")"
-for lua_file in $toc_lua_files; do
-  archive_lua_path="$addon_name/$lua_file"
-  if ! printf '%s\n' "$archive_files" | grep -Fxq "$archive_lua_path"; then
-    echo "[RELEASE] FAILED: Archive missing TOC Lua file '$archive_lua_path'."
+while IFS= read -r toc_file; do
+  [ -n "$toc_file" ] || continue
+
+  archive_toc_path="$addon_name/$toc_file"
+  if ! printf '%s\n' "$archive_files" | grep -Fxq "$archive_toc_path"; then
+    echo "[RELEASE] FAILED: Archive missing required file '$archive_toc_path'."
     exit 1
   fi
-done
+
+  while IFS= read -r lua_file; do
+    [ -n "$lua_file" ] || continue
+    archive_lua_path="$addon_name/$lua_file"
+    if ! printf '%s\n' "$archive_files" | grep -Fxq "$archive_lua_path"; then
+      echo "[RELEASE] FAILED: Archive missing TOC Lua file '$archive_lua_path' from $toc_file."
+      exit 1
+    fi
+  done < <(toc_lib_lua_files "$toc_file" "$addon_dir")
+done < <(toc_lib_discover "$addon_dir")
 
 for disallowed in ".github/" "scripts/" ".luacheckrc"; do
   if printf '%s\n' "$archive_files" | grep -Fq "$addon_name/$disallowed"; then
@@ -189,4 +197,4 @@ done
   echo "notes_path=$notes_path"
 } >> "$output_file"
 
-echo "[RELEASE] PASSED: Created '$archive_path' with version '$archive_version'."
+echo "[RELEASE] PASSED: Created '$archive_path' with version '$archive_version' (${toc_count} TOC file(s))."

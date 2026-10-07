@@ -90,10 +90,16 @@ AutomaticRoleCheck.SetShowMinimapButton = function(value)
   return AutomaticRoleCheck.SetOption("ShowMinimapButton", value, true)
 end
 
+-- Newer clients moved the specialization API into C_SpecializationInfo and
+-- removed the old globals; fall back to the globals on older clients.
+local GetSpec = (C_SpecializationInfo and C_SpecializationInfo.GetSpecialization) or GetSpecialization
+local GetSpecInfo = (C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo) or GetSpecializationInfo
+
 AutomaticRoleCheck.GetRoleName = function()
-  local spec = GetSpecialization()
+  if not (GetSpec and GetSpecInfo) then return end
+  local spec = GetSpec()
   if spec == nil then return end
-  return (select(5, GetSpecializationInfo(spec)))
+  return (select(5, GetSpecInfo(spec)))
 end
 
 AutomaticRoleCheck.Accept = function(self)
