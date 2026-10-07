@@ -11,14 +11,14 @@ permissions:
   contents: write
 jobs:
   package:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Prepare and package release
         id: release
         run: bash ./scripts/release.sh "$GITHUB_OUTPUT" "$GITHUB_REF" "$GITHUB_REF_NAME"
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: AutomaticRoleCheck-${{ steps.release.outputs.archive_version }}
           path: ${{ steps.release.outputs.archive_path }}
@@ -39,7 +39,7 @@ jobs:
         run: bash ./scripts/check.sh worktree-clean
       - name: Create release and upload archive
         if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ github.ref_name }}
           name: ${{ steps.release.outputs.version }}
