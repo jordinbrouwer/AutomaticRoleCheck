@@ -54,5 +54,4 @@ jobs:
           bash ./scripts/publish-curseforge.sh \
             "${{ steps.release.outputs.archive_path }}" \
             "${{ steps.release.outputs.notes_path }}" \
-            "${{ steps.release.outputs.version }}" \
-            "AutomaticRoleCheck.toc"
+            "${{ steps.release.outputs.version }}"

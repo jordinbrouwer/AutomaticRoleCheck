@@ -10,6 +10,7 @@ read_globals = {
   "CreateFrame",
   "GetSpecialization",
   "GetSpecializationInfo",
+  "C_SpecializationInfo",
   "IsShiftKeyDown",
   "UnitIsAFK",
   "LFGListApplicationDialog",

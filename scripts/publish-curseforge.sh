@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+base_dir="$(dirname "$0")"
+# shellcheck source=scripts/toc-lib.sh
+source "$base_dir/toc-lib.sh"
+
 if [ "${PUBLISH_DEBUG:-0}" = "1" ]; then
   set -x
 fi
@@ -8,12 +12,11 @@ fi
 archive_path="${1:-}"
 notes_path="${2:-}"
 version="${3:-}"
-toc_path="${4:-}"
 project_id="${CF_PROJECT_ID:-448353}"
 api_base="https://wow.curseforge.com/api"
 
-if [ -z "$archive_path" ] || [ -z "$notes_path" ] || [ -z "$version" ] || [ -z "$toc_path" ]; then
-  echo "[PUBLISH] FAILED: Usage: publish-curseforge.sh <archive_path> <notes_path> <version> <toc_path>"
+if [ -z "$archive_path" ] || [ -z "$notes_path" ] || [ -z "$version" ]; then
+  echo "[PUBLISH] FAILED: Usage: publish-curseforge.sh <archive_path> <notes_path> <version>"
   exit 1
 fi
 
@@ -42,26 +45,14 @@ if [ ! -f "$notes_path" ]; then
   exit 1
 fi
 
-if [ ! -f "$toc_path" ]; then
-  echo "[PUBLISH] FAILED: TOC not found: $toc_path"
-  exit 1
-fi
-
-interface_line="$(
-  sed -nE 's/^## Interface:[[:space:]]*(.*)$/\1/p' "$toc_path" | head -n 1
-)"
-if [ -z "$interface_line" ]; then
-  echo "[PUBLISH] FAILED: Could not read ## Interface: from $toc_path"
-  exit 1
-fi
-
-interfaces_csv="$(
-  printf '%s' "$interface_line" | tr -d '[:space:]'
-)"
+interfaces_csv="$(toc_lib_all_interfaces_csv ".")"
 if [ -z "$interfaces_csv" ]; then
-  echo "[PUBLISH] FAILED: No interface versions found in $toc_path"
+  echo "[PUBLISH] FAILED: No interface versions found in TOC files."
   exit 1
 fi
+
+toc_count="$(toc_lib_discover | wc -l | tr -d ' ')"
+echo "[PUBLISH] Using interface versions from ${toc_count} TOC file(s): ${interfaces_csv}"
 
 versions_json="$(
   curl -sS \
