@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.6.0...master)
 
+### Added
+- Added `CF_PROJECT_ID` repository variable, replacing the hardcoded value.
+
 ### Changed
 - Updated GitHub Actions workflows to Node 24 compatible action versions.
 
