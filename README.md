@@ -4,7 +4,21 @@ Lightweight approach for automatically accepting role check pop-ups.
 
 ## Usage
 
-### Slash commands
+### Enabled
+
+You can configure these in `/arc options` while the addon is enabled:
+
+- `Disable whilst AFK`: do not auto-accept while marked AFK.
+- `Disable once`: skip the next role check.
+- `Disable once on login`: skip the first role check after every login.
+- `Disable once on role change`: skip the first role check after changing specialization role.
+
+### Disabled
+
+- `/arc disable`: turn the addon off.
+- `Enable once`: accept the next role check. `/arc enable once` does the same.
+
+### Commands
 
 - `/arc`: show current addon version/status and list available commands.
 - `/arc status`: show current addon version and status.
@@ -26,13 +40,13 @@ If you prefer planning ahead, you can use `/arc disable once` before the next ro
 - `Shift + Left-click`: hide minimap button.
 - `Right-click`: open options.
 
-### Other useful options
+## Screenshots
 
-You can configure these in `/arc options`:
+<p><img src="docs/images/1-enabled.png" alt="Enabled options: pause while AFK, once, on login, or on role change" width="400"></p>
 
-- `Disable whilst AFK`: do not auto-accept while marked AFK.
-- `Disable once on each login`: skip the first role check after every login.
-- `Disable once after role change`: skip the first role check after changing specialization role.
+<p><img src="docs/images/2-disabled.png" alt="Disabled state with Enable once for the next role check" width="400"></p>
+
+<p><img src="docs/images/3-commands.png" alt="Slash command list from /arc" width="400"></p>
 
 ## Development
 

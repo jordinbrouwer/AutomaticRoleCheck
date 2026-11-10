@@ -183,7 +183,7 @@ while IFS= read -r toc_file; do
   done < <(toc_lib_lua_files "$toc_file" "$addon_dir")
 done < <(toc_lib_discover "$addon_dir")
 
-for disallowed in ".github/" "scripts/" ".luacheckrc"; do
+for disallowed in ".github/" "docs/" "scripts/" ".luacheckrc"; do
   if printf '%s\n' "$archive_files" | grep -Fq "$addon_name/$disallowed"; then
     echo "[RELEASE] FAILED: Archive includes dev-only path '$addon_name/$disallowed'."
     exit 1
