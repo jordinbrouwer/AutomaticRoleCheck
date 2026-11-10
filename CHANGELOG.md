@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Added `CF_PROJECT_ID` repository variable, replacing the hardcoded value.
+- Added screenshots in the README for the enabled options, the disabled state and the commands.
 
 ### Changed
 - Updated GitHub Actions workflows to Node 24 compatible action versions.
