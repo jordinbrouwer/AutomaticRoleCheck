@@ -69,20 +69,20 @@ fi
 
 slash_section="$(
   awk '
-    /^### Slash commands$/ { in_section = 1; next }
+    /^### Commands$/ { in_section = 1; next }
     /^### / && in_section { exit }
     in_section { print }
   ' README.md
 )"
 if [ -z "$slash_section" ]; then
-  echo "[README CHECK] FAILED: Could not read the 'Slash commands' section."
+  echo "[README CHECK] FAILED: Could not read the 'Commands' section."
   exit 1
 fi
 
 for key in $handler_keys; do
   required_in_section="/arc $key"
   if ! printf '%s\n' "$slash_section" | grep -Fq "$required_in_section"; then
-    echo "[README CHECK] FAILED: Missing '$required_in_section' in the 'Slash commands' section."
+    echo "[README CHECK] FAILED: Missing '$required_in_section' in the 'Commands' section."
     exit 1
   fi
 done
