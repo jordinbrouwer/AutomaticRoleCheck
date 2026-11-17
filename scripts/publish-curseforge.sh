@@ -90,11 +90,16 @@ print(",".join(str(i) for i in ids))
 PY
 )"
 
-metadata="$(
-  NOTES_PATH="$notes_path" \
-  VERSION="$version" \
-  GAME_VERSION_IDS="$game_version_ids" \
-  python3 - <<'PY'
+metadata_file="$(mktemp)"
+response_file="$(mktemp)"
+trap 'rm -f "$metadata_file" "$response_file"' EXIT INT TERM
+
+# curl -F parses ";" inside a command-line value as a form option, which
+# cuts the JSON apart. Read the metadata from a file so the changelog is literal.
+NOTES_PATH="$notes_path" \
+VERSION="$version" \
+GAME_VERSION_IDS="$game_version_ids" \
+python3 - <<'PY' > "$metadata_file"
 import json
 import os
 
@@ -114,17 +119,13 @@ print(
     )
 )
 PY
-)"
-
-response_file="$(mktemp)"
-trap 'rm -f "$response_file"' EXIT INT TERM
 
 http_code="$(
   curl -sS \
     -o "$response_file" \
     -w "%{http_code}" \
     -H "X-Api-Token: ${CF_API_TOKEN}" \
-    -F "metadata=${metadata}" \
+    -F "metadata=<${metadata_file};type=application/json" \
     -F "file=@${archive_path}" \
     "${api_base}/projects/${project_id}/upload-file"
 )"

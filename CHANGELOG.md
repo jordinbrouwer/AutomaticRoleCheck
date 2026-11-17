@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Updated GitHub Actions workflows to Node 24 compatible action versions.
+- Updated CI to run every check as its own job, picked up automatically from `scripts/check/`.
+- Updated CD to run all checks before packaging and publishing.
+
+### Fixed
+- Fixed CurseForge upload failing when the release notes contain a `;`.
 
 ## [2.6.0 (2026-10-07)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.5.0...2.6.0)
 

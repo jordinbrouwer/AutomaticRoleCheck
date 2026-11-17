@@ -3,70 +3,53 @@ on:
   push:
     branches: [master]
   pull_request:
-    branches: [master]
   workflow_dispatch:
+  workflow_call:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
-  check-changelog:
+  discover:
+    name: Discover checks
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      checks: ${{ steps.list.outputs.checks }}
     steps:
-      - uses: actions/checkout@v5
-      - name: Run changelog check
-        run: bash ./scripts/check.sh changelog
+      - uses: actions/checkout@v7
+      - name: List check modes
+        id: list
+        run: |
+          checks="$(bash ./scripts/check.sh list | jq -R . | jq -sc .)"
+          echo "Discovered checks: $checks"
+          echo "checks=$checks" >> "$GITHUB_OUTPUT"
 
-  check-commands:
+  check:
+    name: ${{ matrix.check }}
+    needs: discover
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        check: ${{ fromJSON(needs.discover.outputs.checks) }}
     steps:
-      - uses: actions/checkout@v5
-      - name: Run commands check
-        run: bash ./scripts/check.sh commands
-
-  check-lua:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - name: Install Luacheck
+        if: matrix.check == 'lint'
         run: |
           sudo apt-get update
-          sudo apt-get install -y lua5.4 luarocks
-          sudo luarocks install luacheck
-      - name: Run Luacheck
-        run: bash ./scripts/check.sh lint
-
-  check-readme:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v5
-      - name: Run readme check
-        run: bash ./scripts/check.sh readme
-
-  check-release-dry-run:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v5
-      - name: Validate release script in non-tag context
-        run: bash ./scripts/check.sh release-output
-
-  check-shell:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v5
+          sudo apt-get install -y --no-install-recommends lua-check
       - name: Install ShellCheck
+        if: matrix.check == 'shell'
         run: |
-          sudo apt-get update
-          sudo apt-get install -y shellcheck
-      - name: Lint shell scripts
-        run: bash ./scripts/check.sh shell
-
-  check-smoke:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v5
-      - name: Run smoke check
-        run: bash ./scripts/check.sh smoke
-
-  check-toc:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v5
-      - name: Run toc check
-        run: bash ./scripts/check.sh toc
+          if ! command -v shellcheck >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends shellcheck
+          fi
+      - name: Run ${{ matrix.check }} check
+        env:
+          CHECK_MODE: ${{ matrix.check }}
+        run: bash ./scripts/check.sh "$CHECK_MODE"

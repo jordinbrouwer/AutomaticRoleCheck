@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-base_dir="$(dirname "$0")"
-check_dir="$base_dir/check"
+cd "$(dirname "$0")/.."
+
+check_dir="scripts/check"
+
+# Modes run by `quick`: fast structural checks without extra tooling.
+quick_modes=(toc smoke changelog readme commands)
+
+# Modes that only make sense after packaging; skipped by `all` and `list`.
+post_package_modes=(worktree-clean)
 
 shopt -s nullglob
 script_paths=("$check_dir"/*.sh)
@@ -27,17 +34,26 @@ run_script_mode() {
   bash "$script_path"
 }
 
+# Prints every mode that `all` runs (and CI runs as a separate job), sorted.
+list_modes() {
+  local mode_name skip
+  while IFS= read -r mode_name; do
+    for skip in "${post_package_modes[@]}"; do
+      [ "$mode_name" = "$skip" ] && continue 2
+    done
+    printf '%s\n' "$mode_name"
+  done < <(printf '%s\n' "${script_modes[@]}" | sort)
+}
+
 print_help() {
-  local discovered
-  discovered="$(printf '%s\n' "${script_modes[@]}" | sort)"
   echo "Usage: bash ./scripts/check.sh [mode]"
   echo "Single-script modes:"
-  while IFS= read -r mode_name; do
-    printf '  - %s\n' "$mode_name"
-  done <<< "$discovered"
+  printf '%s\n' "${script_modes[@]}" | sort | sed 's/^/  - /'
   echo "Grouped modes:"
-  echo "  - quick"
-  echo "  - all"
+  echo "  - quick (${quick_modes[*]})"
+  echo "  - all (every mode except: ${post_package_modes[*]})"
+  echo "Other:"
+  echo "  - list (print the modes 'all' runs, one per line)"
 }
 
 mode="${1:-all}"
@@ -45,22 +61,21 @@ case "$mode" in
   -h|--help|help)
     print_help
     ;;
+  list)
+    list_modes
+    ;;
   quick)
-    run_script_mode toc
-    run_script_mode changelog
-    run_script_mode readme
-    run_script_mode commands
+    for mode_name in "${quick_modes[@]}"; do
+      run_script_mode "$mode_name"
+    done
     ;;
   all)
     failed_modes=()
     while IFS= read -r mode_name; do
-      if [ "$mode_name" = "worktree-clean" ]; then
-        continue
-      fi
       if ! run_script_mode "$mode_name"; then
         failed_modes+=("$mode_name")
       fi
-    done < <(printf '%s\n' "${script_modes[@]}" | sort)
+    done < <(list_modes)
     if [ "${#failed_modes[@]}" -ne 0 ]; then
       printf -v joined '%s, ' "${failed_modes[@]}"
       echo "[CHECK] FAILED: One or more modes failed: ${joined%, }."
