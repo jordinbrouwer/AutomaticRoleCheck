@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
+: "${LOG_PREFIX:=readme}"
 
 if [ ! -f "README.md" ]; then
-  echo "[README CHECK] FAILED: README.md not found."
+  echo "[$LOG_PREFIX] FAILED: README.md not found."
   exit 1
 fi
 
-command_file="AutomaticRoleCheck_Command.lua"
+command_file="src/AutomaticRoleCheck_Command.lua"
 if [ ! -f "$command_file" ]; then
-  echo "[README CHECK] FAILED: $command_file not found."
+  echo "[$LOG_PREFIX] FAILED: $command_file not found."
   exit 1
 fi
 
@@ -17,21 +18,21 @@ handler_keys="$(
     sed -nE 's/^  ([a-z0-9_]+)[[:space:]]*= \{/\1/p' | sort -u
 )"
 if [ -z "$handler_keys" ]; then
-  echo "[README CHECK] FAILED: Could not parse command definitions from $command_file."
+  echo "[$LOG_PREFIX] FAILED: Could not parse command definitions from $command_file."
   exit 1
 fi
 
 missing=0
 
 if ! grep -Fq "/arc" README.md; then
-  echo "[README CHECK] FAILED: Missing expected README token: /arc"
+  echo "[$LOG_PREFIX] FAILED: Missing expected README token: /arc"
   missing=1
 fi
 
 for key in $handler_keys; do
   token="/arc $key"
   if ! grep -Fq "$token" README.md; then
-    echo "[README CHECK] FAILED: Missing expected README token: $token"
+    echo "[$LOG_PREFIX] FAILED: Missing expected README token: $token"
     missing=1
   fi
 done
@@ -47,18 +48,18 @@ minimap_args="$(
   printf '%s\n' "$minimap_block" | sed -nE 's/^[[:space:]]*args = "(\[[^"]+\])".*/\1/p'
 )"
 if [ -z "$minimap_args" ]; then
-  echo "[README CHECK] FAILED: Could not parse minimap command args."
+  echo "[$LOG_PREFIX] FAILED: Could not parse minimap command args."
   exit 1
 fi
 minimap_usage="/arc minimap $minimap_args"
 if ! grep -Fq "$minimap_usage" README.md; then
-  echo "[README CHECK] FAILED: Missing expected README token: $minimap_usage"
+  echo "[$LOG_PREFIX] FAILED: Missing expected README token: $minimap_usage"
   missing=1
 fi
 
 for click_hint in "Left-click" "Right-click"; do
   if ! grep -Fq "$click_hint" README.md; then
-    echo "[README CHECK] FAILED: Missing expected README token: $click_hint"
+    echo "[$LOG_PREFIX] FAILED: Missing expected README token: $click_hint"
     missing=1
   fi
 done
@@ -75,16 +76,16 @@ slash_section="$(
   ' README.md
 )"
 if [ -z "$slash_section" ]; then
-  echo "[README CHECK] FAILED: Could not read the 'Commands' section."
+  echo "[$LOG_PREFIX] FAILED: Could not read the 'Commands' section."
   exit 1
 fi
 
 for key in $handler_keys; do
   required_in_section="/arc $key"
   if ! printf '%s\n' "$slash_section" | grep -Fq "$required_in_section"; then
-    echo "[README CHECK] FAILED: Missing '$required_in_section' in the 'Commands' section."
+    echo "[$LOG_PREFIX] FAILED: Missing '$required_in_section' in the 'Commands' section."
     exit 1
   fi
 done
 
-echo "[README CHECK] PASSED: README command and minimap usage coverage looks good."
+echo "[$LOG_PREFIX] PASSED: README command and minimap usage coverage looks good."

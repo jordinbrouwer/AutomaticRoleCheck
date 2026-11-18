@@ -5,6 +5,7 @@
 ## IconTexture: Interface\AddOns\AutomaticRoleCheck\AutomaticRoleCheck
 ## Version: @project-version@
 ## Author: Jordin
+## X-Website: https://www.curseforge.com/wow/addons/automatic-role-check
 
 ## DefaultState: enabled
 ## LoadOnDemand: 0

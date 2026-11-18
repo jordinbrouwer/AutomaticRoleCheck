@@ -1,21 +1,9 @@
 # Changelog
-All notable changes to this project will be documented in this file.
+Written by the release pipeline from the commits; see `CONTRIBUTING.md`.
 
 ## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.6.0...master)
 
-### Added
-- Added `CF_PROJECT_ID` repository variable, replacing the hardcoded value.
-- Added screenshots in the README for the enabled options, the disabled state and the commands.
-
-### Changed
-- Updated GitHub Actions workflows to Node 24 compatible action versions.
-- Updated CI to run every check as its own job, picked up automatically from `scripts/check/`.
-- Updated CD to run all checks before packaging and publishing.
-
-### Fixed
-- Fixed CurseForge upload failing when the release notes contain a `;`.
-
-## [2.6.0 (2026-10-07)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.5.0...2.6.0)
+## [2.6.0 (2026-10-07)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.6.0)
 
 ### Added
 - Added auto-accept support for the role poll popup.
@@ -25,7 +13,7 @@ All notable changes to this project will be documented in this file.
 - Updated specialization role detection to use `C_SpecializationInfo` on newer clients.
 - Updated release and CurseForge publish scripts to handle multiple TOC files.
 
-## [2.5.0 (2026-07-28)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.4.0...2.5.0)
+## [2.5.0 (2026-07-28)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.5.0)
 
 ### Added
 - Added CurseForge publish step to CD so tagged releases upload automatically.
@@ -34,7 +22,7 @@ All notable changes to this project will be documented in this file.
 - Updated the default name of the release.
 - Bumped version due to new patch.
 
-## [2.4.0 (2026-05-06)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.3.1...2.4.0)
+## [2.4.0 (2026-05-06)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.4.0)
 
 ### Added
 - Added minimap button support to enable/disable the addon quickly.
@@ -55,27 +43,27 @@ All notable changes to this project will be documented in this file.
 - Removed `/arc help` command (help is now shown automatically with `/arc`).
 - Removed legacy `/arc enableonce` and `/arc disableonce` command forms.
 
-## [2.3.1 (2026-03-16)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.3.0...2.3.1)
+## [2.3.1 (2026-03-16)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.3.1)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [2.3.0 (2026-01-05)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.3...2.3.0)
+## [2.3.0 (2026-01-05)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.3.0)
 
 ### Added
 - Added feature to skip once by holding shift during a role check.
 
-## [2.2.3 (2025-10-09)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.2...2.2.3)
+## [2.2.3 (2025-10-09)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.2.3)
 
 ### Changed
 - Bumped version due to new patch and early Midnight support.
 
-## [2.2.2 (2025-07-15)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.1...2.2.2)
+## [2.2.2 (2025-07-15)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.2.2)
 
 ### Fixed
 - Issue where enabling the addon once would cause it to remain permanently active.
 
-## [2.2.1 (2025-07-14)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.2.0...2.2.1)
+## [2.2.1 (2025-07-14)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.2.1)
 
 ### Fixed
 - Issue with the incorrect packaging of the latest release.
@@ -83,7 +71,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Removed unused file from `.gitattributes`.
 
-## [2.2.0 (2025-07-11)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.1.2...2.2.0)
+## [2.2.0 (2025-07-11)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.2.0)
 
 ### Added
 - Added an option to enable the addon once for the next upcoming role check.
@@ -91,17 +79,17 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Bumped version due to new patch.
 
-## [2.1.2 (2025-02-19)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.1.1...2.1.2)
+## [2.1.2 (2025-02-19)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.1.2)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [2.1.1 (2024-12-30)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.1.0...2.1.1)
+## [2.1.1 (2024-12-30)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.1.1)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [2.1.0 (2024-12-02)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.0.0...2.1.0)
+## [2.1.0 (2024-12-02)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.1.0)
 
 ### Added
 - Added an option to disable the addon for the first role check upon changing role (@Pegoth).
@@ -109,7 +97,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Bumped version due to new patch.
 
-## [2.0.0 (2024-08-05)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.11.0...2.0.0)
+## [2.0.0 (2024-08-05)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.0.0)
 
 ### Fixed
 - Check for the enabled state of the addon on acceptance of the role check.
@@ -121,7 +109,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Adapted the color of the commands to be corresponding with the logo color.
 
-## [1.11.0 (2024-08-04)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.10.0...1.11.0)
+## [1.11.0 (2024-08-04)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.11.0)
 
 ### Fixed
 - Capability with new changes to the WoW Settings API.
@@ -134,7 +122,7 @@ All notable changes to this project will be documented in this file.
 - Restructured the command list with more fitting naming.
 - Bumped version due to new patch.
 
-## [1.10.0 (2024-06-10)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.9.0...1.10.0)
+## [1.10.0 (2024-06-10)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.10.0)
 
 ### Fixed
 - Issue with populating the options panel (@rodrigodias4).
@@ -142,17 +130,17 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Bumped version due to new patch.
 
-## [1.9.0 (2024-02-13)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.8.0...1.9.0)
+## [1.9.0 (2024-02-13)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.9.0)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [1.8.0 (2023-12-18)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.7.0...1.8.0)
+## [1.8.0 (2023-12-18)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.8.0)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [1.7.0 (2023-08-08)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.6.0...1.7.0)
+## [1.7.0 (2023-08-08)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.7.0)
 
 ### Added
 - Added fallback for invalid commands.
@@ -168,27 +156,27 @@ All notable changes to this project will be documented in this file.
 ### Removed
 - The option for automatic acceptance of dungeon queues upon receiving an invite has been disabled due to hardware protection since patch `10.1.5`.
 
-## [1.6.0 (2023-05-22)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.5.0...1.6.0)
+## [1.6.0 (2023-05-22)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.6.0)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [1.5.0 (2023-01-10)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.4.0...1.5.0)
+## [1.5.0 (2023-01-10)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.5.0)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [1.4.0 (2022-06-13)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.3.0...1.4.0)
+## [1.4.0 (2022-06-13)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.4.0)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [1.3.0 (2022-02-28)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.2.3...1.3.0)
+## [1.3.0 (2022-02-28)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.3.0)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [1.2.4 (2021-12-15)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.2.3...1.2.4)
+## [1.2.4 (2021-12-15)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.2.4)
 
 ### Added
 - Added LICENSE for the project.
@@ -196,22 +184,22 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Updated `.editorconfig`, `.gitattributes` and `.gitignore`.
 
-## [1.2.3 (2021-10-28)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.2.2...1.2.3)
+## [1.2.3 (2021-10-28)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.2.3)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [1.2.2 (2021-10-28)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.2.1...1.2.2)
+## [1.2.2 (2021-10-28)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.2.2)
 
 ### Added
 - Added `.gitattributes`, `.editorconfig` and `CHANGELOG.md`.
 
-## [1.2.1 (2021-07-04)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.2.0...1.2.1)
+## [1.2.1 (2021-07-04)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.2.1)
 
 ### Changed
 - Bumped version due to new patch.
 
-## [1.2.0 (2021-03-01)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.1.0...1.2.0)
+## [1.2.0 (2021-03-01)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.2.0)
 
 ### Added
 - Added support to disable the addon once.
@@ -220,12 +208,12 @@ All notable changes to this project will be documented in this file.
 - Changed the general command to also display whether the addon is enabled or not.
 - Changed the tooltips to be more precise.
 
-## [1.1.0 (2021-02-22)](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/1.0.0...1.1.0)
+## [1.1.0 (2021-02-22)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.1.0)
 
 ### Added
 - Added support to enable and disable the addon using commands.
 - Added support to enable and disable the addon the interface options.
 
-## 1.0.0 (2021-02-18)
+## [1.0.0 (2021-02-18)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/1.0.0)
 
-Initial setup of the project which contains constants enumerating the HTTP Status Codes.
+First release.

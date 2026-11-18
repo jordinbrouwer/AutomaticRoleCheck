@@ -2,6 +2,9 @@
 
 Lightweight approach for automatically accepting role check pop-ups.
 
+<!-- release:start -->
+<!-- release:end -->
+
 ## Usage
 
 ### Enabled

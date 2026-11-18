@@ -1,0 +1,34 @@
+name: Pipeline
+run-name: >-
+  ${{ github.ref_type == 'tag' && format('Publish {0}', github.ref_name)
+  || github.event_name == 'workflow_dispatch' && format('Run by hand on {0}', github.ref_name)
+  || github.event.pull_request.title || github.event.head_commit.message }}
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+    tags: ["[0-9]+.[0-9]+.[0-9]+"]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "On the default branch: auto follows the commits; patch, minor and major force at least that bump."
+        type: choice
+        options: [auto, patch, minor, major]
+        default: auto
+
+concurrency:
+  group: pipeline-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  pipeline:
+    name: AutomaticRoleCheck
+    uses: jordinbrouwer/wow-addon-ci/.github/workflows/addon.yml@v1
+    permissions:
+      actions: write
+      contents: write
+    with:
+      addon: AutomaticRoleCheck
+      bump: ${{ inputs.bump || 'auto' }}
+    secrets: inherit
