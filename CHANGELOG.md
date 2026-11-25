@@ -3,6 +3,29 @@ Written by the release pipeline from the commits; see `CONTRIBUTING.md`.
 
 ## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.6.0...master)
 
+### Added
+- Added a new options window of its own, opened with `/arc`: a header with the logo, a thin scroll bar, its own tooltips and a hint about `/arc help` at the bottom. The game's settings page now has a button that opens it.
+- Added resizing of the options window: drag the grip in the bottom right corner to change its width and height, right-click the grip to go back to the default size. The size is remembered.
+- Added accepting in combat: the popup waits and is accepted right after combat ends, and the minimap button shows that something is waiting.
+- Added the "When it is accepted" table with In combat and Out of combat columns: accept for me, hide the popup, play a sound, choose the sound, and wait before accepting (out of combat only). With "Linked" the Out of combat column follows the In combat column.
+- Added "What to accept" (role checks, role polls, group invites, group sign-ups) and "Only when" (when I play a tank, healer or damage, and where: everywhere, group or instance, or instance only).
+- Added the "My role" box: switch Tank, Healer and Damage on or off for the Group Finder, "Follow spec" to set the role from your specialization, and "Set in group" to also set your role in your group.
+- Added a "Minimap button" box: show the button, colour the check mark by status, lock the button in place, and choose what Left-click, Right-click, Shift + Left-click and Shift + Right-click do.
+- Added a "Reset" link to most option boxes that puts the settings of that box back to their defaults (click it twice).
+- Added `/arc help`, which shows the commands as keys in a message that stays until you click it.
+- Added a new logo, used for the addon icon, the options window, the messages and the minimap button.
+
+### Changed
+- Changed `/arc` to open the options window instead of listing the commands.
+- Changed all messages to show as toasts at the top of the screen instead of lines in chat.
+- Changed the minimap button: the check mark of the logo is green when the addon is on, red when it is off and amber while something waits for combat to end, and its tooltip lists the clicks as you set them.
+- Changed what happens by default out of combat: the game's popup is hidden while it is accepted, and the Ready check sound plays when it has been accepted.
+- Changed sounds: while the addon is on, the game's own ready-check sound is muted (also for normal ready checks), so only the sound you chose plays.
+- Changed the code layout into separate folders for core, window, texts and pictures.
+
+### Removed
+- Removed `/arc options`; use `/arc` to open the options window.
+
 ## [2.6.0 (2026-10-07)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.6.0)
 
 ### Added

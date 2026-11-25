@@ -16,6 +16,29 @@ Contributions are welcome.
 - Everything that ships with the addon lives in `src/`. Keep the `.toc` file list in load order.
 - To test in game, link `src/` into your AddOns folder as `AutomaticRoleCheck`.
 
+## Code layout
+
+Everything is in `src/`; the load order is in `src/AutomaticRoleCheck.toc`.
+
+- `src/Locale/enUS.lua`: all texts the player sees (`L("key")`; a missing key shows the key itself).
+- `src/Core/`: the addon itself.
+  - `Core.lua`: the shared table, picture paths, messages (as toasts) and `ARC.On("EVENT", fn)` for game events.
+  - `Options.lua`: defaults, `ARC.SetOption`, and tidying the saved settings (`DB_VERSION`).
+  - `Sound.lua`: muting the game's ready-check sound and playing the chosen sounds.
+  - `Roles.lua`: your specialization and the roles you queue as.
+  - `Accept.lua`: accepting the popups, also in combat (waiting for combat to end).
+  - `Minimap.lua`: the minimap button.
+  - `Command.lua`: the `/arc` commands.
+- `src/UI/`: the options window; every file takes its tools from the `UI` table.
+  - `Base.lua` (colours, sizes, shared state), `Widgets.lua`, `Tooltip.lua`, `Toast.lua` (messages), `Data.lua` (choices of the settings), `Controls.lua`, `RoleButtons.lua`, `Layout.lua` (which settings show, flow layout), `Scroll.lua`, `Groups.lua`, `TableBox.lua` ("When it is accepted"), `MinimapBox.lua` ("Minimap button"), `TopStrip.lua` ("Enabled" and "My role"), `Canvas.lua` (puts the boxes together), `Window.lua` (header, close, resize grip) and `SettingsPage.lua` (the page in the game's settings).
+- `src/Media/`: the addon's own `.tga` pictures (`ARC.Media.*` gives the paths).
+
+Rules of thumb:
+
+- Colours and sizes live in `src/UI/Base.lua`, texts in `src/Locale/enUS.lua`, picture paths in `src/Core/Core.lua`.
+- A setting is added in `src/Core/Options.lua` (default), `src/UI/Canvas.lua` (where it shows) and the locale.
+- Renamed or removed settings go in `OBSOLETE_KEYS` in `src/Core/Options.lua`, and raise `DB_VERSION`.
+
 ## Checks
 
 The checks live in [wow-addon-ci](https://github.com/jordinbrouwer/wow-addon-ci). Clone it next to this repository; it needs Python 3 and `luacheck`. From this repository's root:

@@ -2,7 +2,7 @@
 
 ## Title: AutomaticRoleCheck
 ## Notes: Lightweight approach for automatically accepting role check pop-ups.
-## IconTexture: Interface\AddOns\AutomaticRoleCheck\AutomaticRoleCheck
+## IconTexture: Interface\AddOns\AutomaticRoleCheck\Media\Logo
 ## Version: @project-version@
 ## Author: Jordin
 ## X-Website: https://www.curseforge.com/wow/addons/automatic-role-check
@@ -11,8 +11,27 @@
 ## LoadOnDemand: 0
 ## SavedVariablesPerCharacter: AutomaticRoleCheck_Options
 
-AutomaticRoleCheck_Locale.lua
-AutomaticRoleCheck.lua
-AutomaticRoleCheck_Panel.lua
-AutomaticRoleCheck_Minimap.lua
-AutomaticRoleCheck_Command.lua
+Locale/enUS.lua
+Core/Core.lua
+Core/Options.lua
+Core/Sound.lua
+Core/Roles.lua
+Core/Accept.lua
+UI/Base.lua
+UI/Widgets.lua
+UI/Tooltip.lua
+UI/Toast.lua
+UI/Data.lua
+UI/Controls.lua
+UI/RoleButtons.lua
+UI/Layout.lua
+UI/Scroll.lua
+UI/Groups.lua
+UI/TableBox.lua
+UI/MinimapBox.lua
+UI/TopStrip.lua
+UI/Canvas.lua
+UI/Window.lua
+UI/SettingsPage.lua
+Core/Minimap.lua
+Core/Command.lua

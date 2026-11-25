@@ -1,0 +1,183 @@
+AutomaticRoleCheck = AutomaticRoleCheck or {}
+
+local locale = GetLocale()
+
+local enUS = {
+  settings_category = "AutomaticRoleCheck",
+  page_desc = "Accepts role checks, role polls, group invites and sign-ups for you, in and out of combat. Set your roles, what to accept and when.",
+  page_open = "Open AutomaticRoleCheck",
+  page_hint = "or type /arc",
+  -- table rows, choices and sounds
+  row_accept = "Accept for me",
+  row_hide = "Hide the popup",
+  row_sound_on = "Play a sound",
+  row_sound = "Sound",
+  row_delay = "Wait before accepting",
+  choice_everywhere = "Everywhere",
+  choice_group = "Group or instance",
+  choice_instance = "Instance only",
+  choice_nowait = "No wait",
+  choice_1s = "1 second",
+  choice_2s = "2 seconds",
+  choice_3s = "3 seconds",
+  choice_5s = "5 seconds",
+  sound_raid_warning = "Raid warning",
+  sound_ready_check = "Ready check",
+  sound_quest_complete = "Quest complete",
+  sound_auction_bell = "Auction bell",
+  sound_whisper = "Whisper",
+  act_toggle = "Switch on or off",
+  act_options = "Open options",
+  act_once = "Skip next check",
+  act_hide = "Hide the button",
+  act_none = "Nothing",
+  short_toggle = "On/off",
+  short_options = "Options",
+  short_once = "Skip",
+  short_hide = "Hide",
+  short_none = "-",
+  grid_plain = "Plain",
+  grid_shift = "Shift",
+  role_cant = "Your class can't play this role, so it can't be switched on.",
+  roles_combat = "Roles can't be changed in combat.",
+  roles_rejected = "The game did not accept that combination of roles.",
+  tip_label_in = "In combat:",
+  tip_label_out = "Out of combat:",
+  tip_accept_in = "accepted right after combat ends.",
+  tip_accept_out = "accepted at once.",
+  tip_accept_off = "Off: you click the popup yourself.",
+  tip_hide_in = "the game's popup is hidden while it waits for combat to end.",
+  tip_hide_out = "the popup is hidden while it is accepted for you.",
+  tip_sound_on_in = "a sound plays when something starts waiting.",
+  tip_sound_on_out = "a sound plays when something has been accepted.",
+  tip_sound = "Which sound is played. Click to choose a sound.",
+  tip_delay_out = "a moment to step in yourself before it is accepted. After combat it is accepted at once.",
+  footer_hint = "Type %s in chat for quick commands.",
+  header_sub = "Role checks, handled for you.",
+  grip_label_drag = "Drag:",
+  grip_label_right = "Right-click:",
+  grip_tip_drag = "change the width and height of the window.",
+  grip_tip_reset = "go back to the default size.",
+  grip_title = "Resize window",
+  options_not_loaded = "Options are not loaded yet, try again in a moment.",
+  status_loading = "Status: loading...",
+  status_enabled_disable_next = "Enabled: Will disable for the next role check.",
+  status_enabled_remain = "Enabled: Will remain active for the next role check.",
+  status_disabled_enable_next = "Disabled: Will enable for the next role check.",
+  status_disabled_remain = "Disabled: Will remain disabled for the next role check.",
+  cmd_card_root = "Open the options.",
+  cmd_card_status = "Show the status.",
+  cmd_card_enable = "Switch on. With once: for the next check only.",
+  cmd_card_disable = "Switch off. With once: for the next check only.",
+  cmd_card_minimap = "Show the button, hide it, or switch between the two.",
+  cmd_title = "Commands",
+  cmd_invalid = "Invalid command.",
+  cmd_invalid_enable = "Invalid enable command. Use: /arc enable [once].",
+  cmd_invalid_disable = "Invalid disable command. Use: /arc disable [once].",
+  cmd_invalid_minimap = "Invalid minimap command. Use: /arc minimap show, hide, or toggle.",
+  cmd_enabled_addon = "Enabled the addon.",
+  cmd_enabled_once = "Enabled once for the next role check.",
+  cmd_disabled_addon = "Disabled the addon.",
+  cmd_disabled_once = "Disabled once for the next role check.",
+  cmd_minimap_shown = "Minimap button is now shown.",
+  cmd_minimap_hidden = "Minimap button is now hidden.",
+  minimap_hidden_print = "Minimap button is now hidden. Use /arc minimap show to restore it.",
+  minimap_tooltip_title = "AutomaticRoleCheck",
+  minimap_status_enabled = "Status: enabled",
+  minimap_status_disabled = "Status: disabled",
+  minimap_status_loading = "Status: loading...",
+  panel_label_Enabled = "Enabled",
+  panel_desc_Enabled = "Switches the addon on or off.",
+  panel_desc_ShowMinimapButton = "Shows or hides the minimap button.",
+  panel_group_when_enabled = "When addon is enabled",
+  panel_group_when_disabled = "When addon is disabled",
+  minimap_status_waiting = "Waiting: it will be accepted right after combat.",
+  panel_group_role = "My role",
+  role_tank = "Tank",
+  role_healer = "Healer",
+  role_damage = "Damage",
+  role_tip = "The roles a role check gives you when you queue. Click to switch a role on or off. This can't be changed in combat.",
+  panel_label_FollowSpec = "Follow spec",
+  panel_desc_FollowSpec = "Your roles follow your specialization: when you switch spec, the matching role is set.",
+  panel_label_SetGroupRole = "Set in group",
+  panel_desc_SetGroupRole = "Also sets your role in your group, when you change it here or join a group. Not in combat.",
+  mini_show_long = "Show button",
+  mini_glow = "Colour",
+  mini_lock = "Lock",
+  reset = "Reset",
+  reset_confirm = "Click again",
+  reset_tip = "Puts the settings in this box back to their defaults.",
+  panel_group_minimap = "Minimap button",
+  panel_desc_MinimapGlow = "The check mark on the button is |cff40f259green|r when the addon is on, |cffff4747red|r when it is off, and |cffffc726amber|r while something waits for combat to end.",
+  panel_desc_MinimapLocked = "Stops the button from being dragged around the minimap by accident.",
+  grid_Left = "Left",
+  grid_Right = "Right",
+  grid_tip = "Click to choose: switch on or off, open the options, skip the next check, hide the button, or nothing.",
+  minimap_act_toggle = "switch on or off",
+  minimap_act_options = "open the options",
+  minimap_act_hide = "hide this button",
+  minimap_act_once_off = "skip the next role check",
+  minimap_act_once_on = "allow the next role check",
+  panel_group_accepted = "When it is accepted",
+  panel_col_in = "In combat",
+  panel_col_out = "Out of combat",
+  link_on = "Linked",
+  link_off = "Separate",
+  link_tip = "Linked: you set it once, in the In combat column, and the Out of combat column follows. Not linked: each column is set by itself.",
+  panel_group_what = "What to accept",
+  panel_group_when = "Only when",
+  panel_label_AcceptRoleCheck = "Role checks",
+  panel_desc_AcceptRoleCheck = "The role check when a dungeon or raid is ready.",
+  panel_label_AcceptRolePoll = "Role polls",
+  panel_desc_AcceptRolePoll = "The role poll a group leader starts.",
+  panel_label_AcceptInvite = "Group invites",
+  panel_desc_AcceptInvite = "Invites from the Group Finder.",
+  panel_label_AcceptSignUp = "Group sign-ups",
+  panel_desc_AcceptSignUp = "The sign-up window when you apply to a group.",
+  panel_label_AcceptTank = "When I play a tank",
+  panel_desc_AcceptTank = "Accept while your current specialization is a tank.",
+  panel_label_AcceptHealer = "When I play a healer",
+  panel_desc_AcceptHealer = "Accept while your current specialization is a healer.",
+  panel_label_AcceptDamage = "When I play damage",
+  panel_desc_AcceptDamage = "Accept while your current specialization deals damage.",
+  panel_label_Scope = "Where",
+  panel_desc_Scope = "Everywhere, only in a group or an instance, or only in an instance. Click to choose.",
+  panel_label_DisableWhilstAFK = "Disable whilst AFK",
+  panel_desc_DisableWhilstAFK = "Disables the addon while you are AFK.",
+  panel_label_DisableOnce = "Disable once",
+  panel_desc_DisableOnce = "Disables the addon for the next role check only.",
+  panel_label_EnableOnce = "Enable once",
+  panel_desc_EnableOnce = "Enables the addon for the next role check only.",
+  panel_label_DisableOnceOnLogin = "Disable once on login",
+  panel_desc_DisableOnceOnLogin = "Disables the addon for the first role check after you log in.",
+  panel_label_DisableOnceOnRoleChange = "Disable once on role change",
+  panel_desc_DisableOnceOnRoleChange = "Disables the addon for the next role check after you change your role.",
+}
+
+local overrides = {}
+
+local merged = {}
+for k, v in pairs(enUS) do
+  merged[k] = v
+end
+local over = overrides[locale]
+if type(over) == "table" then
+  for k, v in pairs(over) do
+    merged[k] = v
+  end
+end
+
+function AutomaticRoleCheck.Loc(key, ...)
+  local fmt = merged[key]
+  if type(fmt) ~= "string" then
+    return tostring(key)
+  end
+  if select("#", ...) > 0 then
+    local ok, result = pcall(string.format, fmt, ...)
+    if ok then
+      return result
+    end
+    return fmt
+  end
+  return fmt
+end

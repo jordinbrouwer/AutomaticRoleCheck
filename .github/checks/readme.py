@@ -5,7 +5,7 @@ from pathlib import Path
 
 from lib import log, toc
 
-COMMAND_FILE = toc.SRC / f"{toc.ADDON}_Command.lua"
+COMMAND_FILE = toc.SRC / "Core" / "Command.lua"
 README = Path("README.md")
 
 for path in (README, COMMAND_FILE):
@@ -14,17 +14,17 @@ for path in (README, COMMAND_FILE):
 readme = README.read_text(encoding="utf-8")
 text = COMMAND_FILE.read_text(encoding="utf-8")
 
-block = re.search(r"^commandDefinitions = \{\n(.*?)^\}", text, re.M | re.S)
+block = re.search(r"^local commandDefinitions = \{\n(.*?)^\}", text, re.M | re.S)
 keys = sorted(set(re.findall(r"^  ([a-z0-9_]+)\s*= \{", block.group(1), re.M))) if block else []
 if not keys:
     log.fail(f"Could not parse command definitions from {COMMAND_FILE}.")
 
-minimap = re.search(r"^  minimap = \{\n(.*?)^  \},$", text, re.M | re.S)
-args = re.search(r'^\s*args = "(\[[^"]+\])"', minimap.group(1), re.M) if minimap else None
+minimap = re.search(r'key = "/arc minimap", extras = \{([^}]*)\}', text)
+args = re.findall(r'"([a-z]+)"', minimap.group(1)) if minimap else []
 if not args:
     log.fail("Could not parse minimap command args.")
 
-wanted = ["/arc", *(f"/arc {key}" for key in keys), f"/arc minimap {args.group(1)}", "Left-click", "Right-click"]
+wanted = ["/arc", *(f"/arc {key}" for key in keys), f"/arc minimap [{'|'.join(args)}]", "Left-click", "Right-click"]
 missing = [f"Missing expected README token: {token}" for token in wanted if token not in readme]
 if missing:
     log.fail("\n".join(missing))
