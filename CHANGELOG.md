@@ -1,7 +1,9 @@
 # Changelog
 Written by the release pipeline from the commits; see `CONTRIBUTING.md`.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.6.0...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.7.0...master)
+
+## [2.7.0 (2026-11-25)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.7.0)
 
 ### Added
 - Added a new options window of its own, opened with `/arc`: a header with the logo, a thin scroll bar, its own tooltips and a hint about `/arc help` at the bottom. The game's settings page now has a button that opens it.
