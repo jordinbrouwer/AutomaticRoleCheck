@@ -3,6 +3,7 @@
 Lightweight approach for automatically accepting role check pop-ups.
 
 <!-- release:start -->
+[![CurseForge](https://img.shields.io/curseforge/v/448353?label=CurseForge)](https://www.curseforge.com/wow/addons/automatic-role-check) [![Downloads](https://img.shields.io/curseforge/dt/448353?label=downloads)](https://www.curseforge.com/wow/addons/automatic-role-check) [![GitHub release](https://img.shields.io/github/v/release/jordinbrouwer/AutomaticRoleCheck?label=GitHub)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/latest)
 <!-- release:end -->
 
 ## Usage
