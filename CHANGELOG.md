@@ -1,7 +1,12 @@
 # Changelog
 Written by the release pipeline from the commits; see `CONTRIBUTING.md`.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.7.0...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.7.1...master)
+
+## [2.7.1 (2026-11-26)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.7.1)
+
+### Fixed
+- Header text ends with ... and the window is no wider than its default width. ([23852d9](https://github.com/jordinbrouwer/AutomaticRoleCheck/commit/23852d986d304efd64e00511de82c768bc029c56))
 
 ## [2.7.0 (2026-11-25)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.7.0)
 
