@@ -51,7 +51,7 @@ local THEME = {
 local WINDOW = {
   WIDTH = 780,        -- the width that fits the top line, and the table and the minimap box side by side
   MIN_W = 440,
-  MAX_W = 960,
+  MAX_W = 780,        -- the window cannot be made wider than its default width
   MIN_H = 220,
   MAX_H = 700,        -- when the window opens for the first time (and at most 88% of the screen)
 }
