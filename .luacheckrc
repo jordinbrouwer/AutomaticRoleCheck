@@ -5,6 +5,7 @@ globals = {
   "AutomaticRoleCheck_Options",
   "SLASH_AUTOMATICROLECHECK1",
   "SlashCmdList",
+  "RolePollPopup",            -- its .role is set to the role you chose (Set in group)
 }
 read_globals = {
   "CreateFrame",
@@ -17,7 +18,9 @@ read_globals = {
   "LFGInvitePopupAcceptButton",
   "LFDRoleCheckPopupAcceptButton",
   "RolePollPopupAcceptButton",
+  "RolePollPopup_UpdateChecked",
   "LFGListInviteDialog_Show",
+  "Enum",
   "Settings",
   "InterfaceOptionsFrame_OpenToCategory",
   "C_AddOns",

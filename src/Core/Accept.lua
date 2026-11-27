@@ -134,10 +134,25 @@ local function AcceptNow(button)
   end
 end
 
+-- A role poll starts on the role the game gave you in the group (from your spec). With "Set in group" on,
+-- the role you chose is ticked instead, so accepting it (by you or the addon) keeps that role.
+local ENUM_ROLE = { TANK = "Tank", HEALER = "Healer", DAMAGER = "Damage" }
+local function PickPollRole(options)
+  if not (options.SetGroupRole and RolePollPopup and RolePollPopup_UpdateChecked and Enum and Enum.LFGRole) then return end
+  local role = ARC.GroupRole(ARC.GetRoles())
+  if not role then return end
+  local canTank, canHeal, canDamage = true, true, true
+  if UnitGetAvailableRoles then canTank, canHeal, canDamage = UnitGetAvailableRoles("player") end
+  if not ({ TANK = canTank, HEALER = canHeal, DAMAGER = canDamage })[role] then return end
+  RolePollPopup.role = Enum.LFGRole[ENUM_ROLE[role]]
+  RolePollPopup_UpdateChecked(RolePollPopup)
+end
+
 -- Runs when one of the popups shows (a script on its Accept button).
 ARC.Accept = function(button)
   local options = GetOptions()
   if not options then return end
+  if IsRolePoll(button) then PickPollRole(options) end
   if not ShouldAccept(button, options) then return LeaveToYou(button) end
   -- The delay is for accepting out of combat; after combat it is accepted straight away.
   local delay = tonumber(options.AcceptDelay) or 0

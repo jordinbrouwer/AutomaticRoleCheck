@@ -30,10 +30,15 @@ ARC.SetRoles = function(tank, healer, damage)
   pcall(SetLFGRoles, leader and true or false, tank and true or false, healer and true or false, damage and true or false)
   local options = GetOptions()
   if options and options.SetGroupRole and IsInGroup() then
-    local role = tank and "TANK" or healer and "HEALER" or damage and "DAMAGER"
+    local role = ARC.GroupRole(tank, healer, damage)
     if role and UnitSetRole then pcall(UnitSetRole, "player", role) end
   end
   return true
+end
+
+-- The one role to have in a group, from the roles you queue as (the first of tank, healer, damage).
+ARC.GroupRole = function(tank, healer, damage)
+  return tank and "TANK" or healer and "HEALER" or damage and "DAMAGER" or nil
 end
 
 -- The roles follow the current specialization (when "Follow spec" is on).
