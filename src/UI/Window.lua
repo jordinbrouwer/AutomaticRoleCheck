@@ -104,6 +104,7 @@ local function BuildHeader(frame)
   end
   Fit()
   header:SetScript("OnSizeChanged", function() C_Timer.After(0, Fit) end)
+  header.Fit = Fit
   return header
 end
 
@@ -281,6 +282,9 @@ local function BuildWindow()
   UI.BuildCanvas(host)
   SetupFitting(window)
   SetupShowing(window)
+  -- measure the header again on every open (after SetupShowing, which sets OnShow): the first measure can come
+  -- before WoW has the width or the font, and then the description gets one line too few until the width changes
+  window:HookScript("OnShow", function() C_Timer.After(0, header.Fit) end)
   SetupEscape(window)
   BuildGrip(window)
   ApplyOutline(window)
