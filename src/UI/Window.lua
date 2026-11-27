@@ -17,9 +17,10 @@ local TITLE_COLOR = { 0.91, 0.97, 1 }
 local SUBTITLE_COLOR = { 0.22, 0.77, 1 }
 local FOOTER_COLOR = { 0.79, 0.8, 0.83 }
 local FOOTER_LINE = { 0.11, 0.29, 0.4 }   -- the thin line along the top of the band
-local HEADER_H = 44              -- the header band
-local CONTENT_TOP = 47           -- the boxes start under the header
+local HEADER_H = 44              -- the header band (at least; it grows when the description needs more lines)
+local HEADER_AIR = 7             -- above and below the name and description in the band
 local CONTENT_PADDING = 51 + LAYOUT.FOOTER   -- window height = content height + this (header, footer, edges and a little air)
+local headerExtra = 0            -- how much taller than HEADER_H the band is now
 
 ---------------------------------------------------------------- keeping the window in step with the settings
 local function SyncAllCheckboxes()
@@ -83,16 +84,27 @@ local function BuildHeader(frame)
   title:SetText(ARC.AddonName)
   local sub = header:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
   sub:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -2)
-  -- stops left of the close button; a narrow window cuts the line off with "..."
+  -- stops left of the close button; a narrow window wraps it onto more lines (the band grows with it)
   sub:SetPoint("RIGHT", header, "RIGHT", -40, 0)
   sub:SetJustifyH("LEFT")
-  sub:SetWordWrap(false)
+  sub:SetWordWrap(true)
   sub:SetTextColor(SUBTITLE_COLOR[1], SUBTITLE_COLOR[2], SUBTITLE_COLOR[3], 1)
   local notes = (C_AddOns and C_AddOns.GetAddOnMetadata and C_AddOns.GetAddOnMetadata(ARC.AddonName, "Notes"))
     or (GetAddOnMetadata and GetAddOnMetadata(ARC.AddonName, "Notes"))
   sub:SetText(notes and notes ~= "" and notes or L("header_sub"))
-  -- name and description together are centred on the logo: the name sits half the block above the middle
-  title:SetPoint("LEFT", header, "LEFT", 56, (sub:GetStringHeight() + 2) / 2)
+  -- The band is as tall as the name and description need (with the same air above and below), and the
+  -- two are centred on the logo: the name sits half the description above the middle. Again after a resize.
+  local function Fit()
+    local h = math.max(HEADER_H, math.ceil(title:GetStringHeight() + 2 + sub:GetStringHeight() + 2 * HEADER_AIR))
+    title:SetPoint("LEFT", header, "LEFT", 56, (sub:GetStringHeight() + 2) / 2)
+    if math.abs(header:GetHeight() - h) < 0.5 then return end
+    header:SetHeight(h)
+    headerExtra = h - HEADER_H
+    Relayout()   -- the window height follows (the boxes hang under the band)
+  end
+  Fit()
+  header:SetScript("OnSizeChanged", function() C_Timer.After(0, Fit) end)
+  return header
 end
 
 -- A dark blue band along the bottom (like the header) with a hint about where to find the commands.
@@ -137,7 +149,7 @@ end
 local function SetupFitting(frame)
   S.fitWindow = function(contentH)
     local o = GetOptions()
-    local fit = math.floor(math.max(160, math.min(UIParent:GetHeight(), contentH + CONTENT_PADDING)) + 0.5)
+    local fit = math.floor(math.max(160, math.min(UIParent:GetHeight(), contentH + CONTENT_PADDING + headerExtra)) + 0.5)
     if frame.SetResizeBounds then
       frame:SetResizeBounds(WINDOW.MIN_W, math.min(WINDOW.MIN_H, fit), math.min(WINDOW.MAX_W, UIParent:GetWidth()), fit)
     end
@@ -148,7 +160,7 @@ local function SetupFitting(frame)
       end
       return
     end
-    frame:SetHeight(math.floor(math.max(160, math.min(math.floor(UIParent:GetHeight() * 0.92), contentH + CONTENT_PADDING)) + 0.5))
+    frame:SetHeight(math.floor(math.max(160, math.min(math.floor(UIParent:GetHeight() * 0.92), contentH + CONTENT_PADDING + headerExtra)) + 0.5))
   end
 end
 
@@ -260,11 +272,11 @@ end
 ---------------------------------------------------------------- the window
 local function BuildWindow()
   window = BuildFrame()
-  BuildHeader(window)
+  local header = BuildHeader(window)
   BuildCloseButton(window)
   BuildFooter(window)
   local host = CreateFrame("Frame", nil, window)
-  host:SetPoint("TOPLEFT", window, "TOPLEFT", 0, -CONTENT_TOP)
+  host:SetPoint("TOPLEFT", header, "BOTTOMLEFT", -1, 0)
   host:SetPoint("BOTTOMRIGHT", window, "BOTTOMRIGHT", 0, 4 + LAYOUT.FOOTER)
   UI.BuildCanvas(host)
   SetupFitting(window)
