@@ -1,7 +1,15 @@
 # Changelog
 Written by the release pipeline from the commits; see `CONTRIBUTING.md`.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.7.1...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.7.2...master)
+
+## [2.7.2 (2026-11-27)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.7.2)
+
+### Fixed
+- The game's ready-check sound plays again for ready checks, Dungeon ready, Group Finder invites and role checks the addon leaves to you. ([0ea5422](https://github.com/jordinbrouwer/AutomaticRoleCheck/commit/0ea542288767991035a01afbec3261a9f19792cb))
+- With Set in group on, role polls pick the role you chose instead of the one from your spec. ([7b13eec](https://github.com/jordinbrouwer/AutomaticRoleCheck/commit/7b13eec7be69123253fafed62ec5dd48f9d1acdd))
+- When I play a tank, healer or damage follows the roles you chose under My role, not your spec. ([6adfc2c](https://github.com/jordinbrouwer/AutomaticRoleCheck/commit/6adfc2c82920ecc5df4f73bf3218bc3ac3bf4f55))
+- The header description goes on over more lines instead of ending with ..., and the header grows with it. ([da20a50](https://github.com/jordinbrouwer/AutomaticRoleCheck/commit/da20a50e285efafec1dcbbf747fdc1a51e800dc9))
 
 ## [2.7.1 (2026-11-26)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.7.1)
 
