@@ -1,7 +1,12 @@
 # Changelog
 Written by the release pipeline from the commits; see `CONTRIBUTING.md`.
 
-## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.7.2...master)
+## [Unreleased](https://github.com/jordinbrouwer/AutomaticRoleCheck/compare/2.7.3...master)
+
+## [2.7.3 (2026-11-27)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.7.3)
+
+### Fixed
+- The header no longer cuts off the second line of its description when the window opens. ([cb56692](https://github.com/jordinbrouwer/AutomaticRoleCheck/commit/cb56692d1253f414e675ecc99bf91a1e138b9e46))
 
 ## [2.7.2 (2026-11-27)](https://github.com/jordinbrouwer/AutomaticRoleCheck/releases/tag/2.7.2)
 
