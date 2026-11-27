@@ -90,6 +90,19 @@ ARC.On("PLAYER_REGEN_ENABLED", function()
 end)
 
 ---------------------------------------------------------------- the decision
+-- The roles you play are the ones you chose under "My role" (any role your class can fill, whatever your
+-- spec); only when none is chosen does your spec count. Accepted when one of them is allowed.
+local function RoleAllowed(options)
+  local tank, healer, damage = ARC.GetRoles()
+  if not (tank or healer or damage) then
+    local role = ARC.GetRoleName()
+    if not role then return true end
+    tank, healer, damage = role == "TANK", role == "HEALER", role == "DAMAGER"
+  end
+  return (tank and options.AcceptTank ~= false) or (healer and options.AcceptHealer ~= false)
+    or (damage and options.AcceptDamage ~= false) or false
+end
+
 -- Should this popup be accepted, given the settings and where you are? (Uses up "once" choices.)
 local function ShouldAccept(button, options)
   -- These choices count for the moment the popup appears, also when it is accepted later.
@@ -98,9 +111,7 @@ local function ShouldAccept(button, options)
   if options.DisableWhilstAFK and UnitIsAFK("player") then return false end
   -- Only the kinds of popup, roles and places you chose (a choice you made never uses up "once").
   if options["Accept" .. PopupKind(button)] == false then return false end
-  local role = ARC.GetRoleName()
-  if (role == "TANK" and options.AcceptTank == false) or (role == "HEALER" and options.AcceptHealer == false)
-    or (role == "DAMAGER" and options.AcceptDamage == false) then return false end
+  if not RoleAllowed(options) then return false end
   if options.Scope == "group" and not (IsInGroup() or IsInInstance()) then return false end
   if options.Scope == "instance" and not IsInInstance() then return false end
   if options.AcceptOutOfCombat == false and not InCombatLockdown() then return false end
