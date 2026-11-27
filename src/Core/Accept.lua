@@ -112,11 +112,16 @@ local function ShouldAccept(button, options)
   return true
 end
 
+-- A role check or role poll left for you to click gets the game's sound back (the addon mutes it).
+local function LeaveToYou(button)
+  if IsRoleCheck(button) or IsRolePoll(button) then ARC.PlayGameSound() end
+end
+
 local function AcceptNow(button)
   local options = GetOptions() or {}
   if InCombatLockdown() then
     -- With "Accept in combat" off nothing happens here: the game's popup stays for you to click.
-    if options.AcceptInCombat ~= false then Wait(button) end
+    if options.AcceptInCombat ~= false then Wait(button) else LeaveToYou(button) end
     return
   end
   if options.AcceptOutOfCombat == false then return end
@@ -132,7 +137,8 @@ end
 -- Runs when one of the popups shows (a script on its Accept button).
 ARC.Accept = function(button)
   local options = GetOptions()
-  if not options or not ShouldAccept(button, options) then return end
+  if not options then return end
+  if not ShouldAccept(button, options) then return LeaveToYou(button) end
   -- The delay is for accepting out of combat; after combat it is accepted straight away.
   local delay = tonumber(options.AcceptDelay) or 0
   if delay > 0 then

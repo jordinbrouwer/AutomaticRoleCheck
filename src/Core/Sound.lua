@@ -1,5 +1,6 @@
 -- Sounds. While the addon is on, the game's own "ready check" sound is muted, so only your chosen sound plays.
 -- (Our "Ready check" choice is the same file, so it is let through for a moment when we play it.)
+-- The mute is per file, so it also hits popups the addon leaves to you: for those the sound is played again.
 local ARC = AutomaticRoleCheck
 local GetOptions = ARC.GetOptions
 
@@ -33,7 +34,21 @@ ARC.PlayOwnSound = function(id)
   end
 end
 
+-- The game's ready-check sound, for a popup the addon does not take over (silent while muted).
+ARC.PlayGameSound = function()
+  if gameSoundMuted then ARC.PlayOwnSound(READY_CHECK_KIT) end
+end
+
+-- Popups that play the ready-check sound and that the addon never accepts. Our handlers run after the
+-- game's, so the muted sound has already gone by.
+for _, event in ipairs({ "READY_CHECK", "LFG_PROPOSAL_SHOW", "LFG_READY_CHECK_SHOW" }) do
+  ARC.On(event, ARC.PlayGameSound)
+end
+
 ARC.OnOptionChanged("Enabled", SyncGameSound)
 ARC.On("PLAYER_ENTERING_WORLD", function(isLogin, isReload)
-  if isLogin or isReload then SyncGameSound() end
+  if not (isLogin or isReload) then return end
+  SyncGameSound()
+  -- the Group Finder "you are invited" dialog
+  if LFGListInviteDialog_Show then hooksecurefunc("LFGListInviteDialog_Show", ARC.PlayGameSound) end
 end)
